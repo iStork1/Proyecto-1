@@ -18,7 +18,7 @@ public class Aplicacion {
 //	+pedirCredencialesyMostrarMenu():String //rol
 //	+ejecutarOpcionUsuario(String):void
 	
-	public void pedirCredencialesyMostrarMenu()
+	public void pedirCredenciales()
 	{
 		boolean centinela;
 		System.out.println("Bienvenido a la aplicación de Renticar");
@@ -37,8 +37,34 @@ public class Aplicacion {
 			
 			centinela=this.renticar.getcontrolUsuarios().verificarCredencialesUsuario(usernamep, passwordp);
 		}
-		System.out.println("Menu");
-		System.out.println(this.renticar.getcontrolUsuarios().generarMenuSegunUsuario());
+		
+		
+		}
+		private int mostrarmenu()
+		{
+			System.out.println("Menu");
+			Object[] resultado = this.renticar.getcontrolUsuarios().generarMenuSegunUsuario(); 
+			System.out.println((String) resultado[0]);
+			System.out.println("14. Salir de la aplicación.");
+		
+			return (int) resultado[1];
+		}
+	
+	private void ejecutarOpcionUsuario() {
+		
+		boolean funcionando=true;
+		while (funcionando == true)
+		{	int nOpciones = this.mostrarmenu();
+			int opcion = Integer.parseInt(input("Ingrese la opción que desea ejecutar: "));
+			
+			if (opcion>0 & opcion<=nOpciones)
+			{//TODO ejecutar opciones
+			}
+			if (opcion ==14) {funcionando = false;}
+			
+			else {System.out.println("Ingrese una opción válida.");}
+		}	
+		
 		
 		
 		
@@ -50,12 +76,14 @@ public class Aplicacion {
 	{
 		Aplicacion aplicacion= new Aplicacion();
 		
+		aplicacion.pedirCredenciales();
 		
+		aplicacion.ejecutarOpcionUsuario();
 	}
 	
 	
-	
-	
+
+
 	//input funcion
 	
 	public static String input(String mensaje)

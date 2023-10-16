@@ -1,9 +1,10 @@
 package modelo;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Usuario {
+public class Usuario implements Serializable{
 
 	private String username;
 	private String contrasenia;

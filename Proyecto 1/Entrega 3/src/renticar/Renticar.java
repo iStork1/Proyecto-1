@@ -37,7 +37,7 @@ public class Renticar {
 		
 		this.sistemaReservaAlquiler = new SistemaReservaAlquiler();//TODO
 		
-		this.inventario = new Inventario(archivoInventario);
+		//this.inventario = new Inventario(archivoInventario);
 		
 		
 		
@@ -61,9 +61,9 @@ public class Renticar {
 		return sistemaReservaAlquiler;
 	}
 
-	public Inventario getInventario() {
-		return inventario;
-	}
+//	public Inventario getInventario() {
+//		return inventario;
+//	}
 	
 	
 	

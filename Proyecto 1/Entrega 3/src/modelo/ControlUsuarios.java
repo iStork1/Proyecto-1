@@ -83,18 +83,61 @@ public class ControlUsuarios {
 		
 	}
 	
-	public String generarMenuSegunUsuario() {
+	public Object[] generarMenuSegunUsuario() {
 		
 		String rol = this.usuarioActual.getRol();
 		
-		String menubase = "1. Alquilar un carro\n2. Reservar un carro.";
+		//todos/puede alquilar
+		String o1 = "1. Alquilar un vehículo";
+		String o2 = "2. Reservar un vehículo.";
+		String o3 = "3. Modificar una reserva.";
+		
+		//empleados
+		String o4 = "4. Reportar novedad vehículo."; //mantenimiento o algo así
+		String o5 = "5. Entrega vehículo"; //conductores adicionales y cosas así, modificar el alquiler
+		String o6 = "6. Recibir vehículo"; //entrega, recibir en la empresa}
+		
+		String o7 ="7. Reserva especial para un cliente interno";//enviar un vehiculo de una sede a otra
+		String o8 = "8. Actualizar el estado de un carro."; //mantenimiento, se estima una fecha cuando vuelva a estar disponible
+		
+		
+		//admin local / sede
+		
+		String o9 ="9. Crear una cuenta para un empleado";
+		//admin general
+		String o10 = "9.  Agregar un vehículo al inventario.";
+		String o11 = "10.  Dar de baja un vehículo en el inventario.";
+		String o12 = "11. Crear una sede.";
+		String o13 = "12. Modificar información de una sede.";
+		
+				
 		String menu =new String();
+		int i = 0;
 		if (rol.equals("cliente"))
 		{
-			menu = menubase;
+			menu = o1+"/n"+o2+"/n"+o3;
+			i=3;
+		}
+		if (rol.equals("empleado"))
+		{
+			menu= o1 + "\n" + o2 + "\n" + o3 + "\n" + o4 + "\n" + o5 + "\n" + o6 + "\n" + o7 + "\n" + o8;
+			i=8;
 		}
 		
-		return menu;
+		if (rol.equals("administradorLocal"))
+		{
+			menu= o1 + "\n" + o2 + "\n" + o3 + "\n" + o4 + "\n" + o5 + "\n" + o6 + "\n" + o7 + "\n" + o8+ "\n"+o9;
+			i=9;
+		}
+		
+		
+		if (rol.equals("administradorGeneral"))
+		{
+			menu = o1 + "\n" + o2 + "\n" + o3 + "\n" + o4 + "\n" + o5 + "\n" + o6 + "\n" + o7 + "\n" + o8 + "\n" + o9 + "\n" + o10 + "\n" + o11 + "\n" + o12+ "\n" + o13;
+			i=13;
+		}
+		
+		return new Object[] {menu,i};
 		
 	}
 	
