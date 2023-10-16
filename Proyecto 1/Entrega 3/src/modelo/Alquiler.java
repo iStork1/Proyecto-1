@@ -1,25 +1,25 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Alquiler {
 	private Categoria tipoCarro;
 	private Sede sedeDondeRecogera;
-	private Sede lugarRecoleccion;
-	private LocalDate fechaRecoleccion; 
+	private LocalDateTime fechaRecoleccion; 
 	private Sede sedeDondeSeEntrega;
-	private LocalDate fechaEntrega;
+	private LocalDateTime fechaEntrega;
 	private int valorServicio;
 //	-otrosConductores:Licencia[]
-	public Alquiler(Categoria tipoCarro, Sede sedeDondeRecogera, Sede lugarRecoleccion, LocalDate fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDate fechaEntrega, int valorServicio) {
+	public Alquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) {
 		this.tipoCarro = tipoCarro;
 		this.sedeDondeRecogera = sedeDondeRecogera;
-		this.lugarRecoleccion = lugarRecoleccion;
 		this.fechaRecoleccion = fechaRecoleccion;
 		this.sedeDondeSeEntrega = sedeDondeSeEntrega;
 		this.fechaEntrega = fechaEntrega;
-		this.valorServicio = valorServicio;
+		
+		//this.valorServicio = valorServicio;
 	}
 	
 	

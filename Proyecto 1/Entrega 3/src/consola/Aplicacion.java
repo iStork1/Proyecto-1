@@ -59,6 +59,8 @@ public class Aplicacion {
 			
 			if (opcion>0 & opcion<=nOpciones)
 			{//TODO ejecutar opciones
+				if (opcion ==1) {this.renticar.alquilarVehiculo();}
+				
 			}
 			if (opcion ==14) {funcionando = false;}
 			
@@ -80,6 +82,7 @@ public class Aplicacion {
 		
 		aplicacion.ejecutarOpcionUsuario();
 	}
+	
 	
 	
 
