@@ -1,10 +1,11 @@
 package modelo;
 
+import java.io.File;
 import java.util.*;
 
 public class Inventario {
 	Map<String, List<Vehiculo>> Vehiculos = new HashMap<>();
-	
+	File archivo;
 	public Inventario(Map<String, List<Vehiculo>> Vehiculos) {
 		this.Vehiculos=Vehiculos;
 	}
@@ -46,6 +47,4 @@ public class Inventario {
 	public void eliminarVehiculo(String placa) {
 		
 	}
-	
-		
 }
