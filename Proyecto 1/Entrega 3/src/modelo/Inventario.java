@@ -1,7 +1,9 @@
-import java.util.*
+package modelo;
+
+import java.util.*;
 
 public class Inventario {
-	Map<Sede, List<Vehiculo>> Vehiculos = new HashMap<>();
+	Map<String, List<Vehiculo>> Vehiculos = new HashMap<>();
 	
 	private Vehiculo getVehiculo(String placa) {
 		for (Map.Entry<String, List<Vehiculo>> entrada : Vehiculos.entrySet()) {
@@ -9,10 +11,13 @@ public class Inventario {
 		    List<Vehiculo> listaDeVehiculos = entrada.getValue();
 		    System.out.println("Sede: " + sede);
 		    for (Vehiculo vehiculo : listaDeVehiculos) {
-                if vehiculo.getPlaca().equals(placa);
-                	return Vehiculo
+                if (vehiculo.getPlaca().equals(placa)){
+                	Vehiculo vehiculoEncontrado=vehiculo;
+                	
+                }
             }
         }
+		
 	}
 	public Registro getLogVehiculo (String placa) {
 		
@@ -20,8 +25,8 @@ public class Inventario {
 	public void cambiarSedeVehiculo() {
 		
 	}
-	public agregarVehiculo(Vehiculo) {
-		if (Vehiculos.containsKey(nombreSede)) {
+	public void agregarVehiculo(Vehiculo vehiculo) {
+		if (Vehiculos.containsKey(vehiculo.getnombreSede()) {
             // Si la sede ya existe, obtener la lista de vehículos asociada
             List<Vehiculo> listaDeVehiculos = Vehiculos.get(nombreSede);
             listaDeVehiculos.add(vehiculo);
@@ -32,7 +37,7 @@ public class Inventario {
             Vehiculos.put(Vehiculo.getsedeUbicado().getnombreSede(), nuevaListaDeVehiculos);
 		}
 	}
-	public eliminarVehiculo(String placa) {
+	public void eliminarVehiculo(String placa) {
 		
 	}
 	
