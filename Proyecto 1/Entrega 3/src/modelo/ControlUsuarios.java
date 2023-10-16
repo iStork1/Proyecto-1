@@ -105,10 +105,10 @@ public class ControlUsuarios {
 		
 		String o9 ="9. Crear una cuenta para un empleado";
 		//admin general
-		String o10 = "9.  Agregar un vehículo al inventario.";
-		String o11 = "10.  Dar de baja un vehículo en el inventario.";
-		String o12 = "11. Crear una sede.";
-		String o13 = "12. Modificar información de una sede.";
+		String o10 = "10.  Agregar un vehículo al inventario.";
+		String o11 = "11.  Dar de baja un vehículo en el inventario.";
+		String o12 = "12. Crear una sede.";
+		String o13 = "13. Modificar información de una sede.";
 		
 				
 		String menu =new String();
@@ -158,5 +158,11 @@ public class ControlUsuarios {
 		
 		this.guardarUsuariosRegistrados();
 		
+	}
+	
+	
+	public String getRolUsuarioActual() 
+	{
+		return this.usuarioActual.getRol();
 	}
 }

@@ -12,7 +12,7 @@ public class Inventario {
 	public Map<String, ArrayList<Vehiculo>> getInventario(){
 		return Vehiculos;	
 	}
-	private Vehiculo getVehiculo(String placa) {
+	public Vehiculo getVehiculo(String placa) {
 		for (Entry<String, ArrayList<Vehiculo>> entrada : Vehiculos.entrySet()) {
 		    String sede = entrada.getKey();
 		    List<Vehiculo> listaDeVehiculos = entrada.getValue();
@@ -73,24 +73,22 @@ public class Inventario {
 		return null;
 		
 	}
-	public void iniciarInventario() {
-		String rutaArchivo = "./data/inventario.txt";
-		archivo= new File(rutaArchivo);
-		if (archivo.exists()) {
-            System.out.println("El archivo ya existe.");
-        } else {
-            try {
-                // Intenta crear el archivo
-                boolean creado = archivo.createNewFile();
-                if (creado) {
-                    System.out.println("El archivo se ha creado exitosamente.");
-                } else {
-                    System.out.println("No se pudo crear el archivo.");
-                }
-            } catch (IOException e) {
-                System.out.println("Error al crear el archivo: " + e.getMessage());
-            }
-        }
-    }
+//	public void iniciarInventario() {
+//		if (archivo.exists()) {
+//            System.out.println("El archivo ya existe.");
+//        } else {
+//            try {
+//                // Intenta crear el archivo
+//                boolean creado = archivo.createNewFile();
+//                if (creado) {
+//                    System.out.println("El archivo se ha creado exitosamente.");
+//                } else {
+//                    System.out.println("No se pudo crear el archivo.");
+//                }
+//            } catch (IOException e) {
+//                System.out.println("Error al crear el archivo: " + e.getMessage());
+//            }
+//        }
+//    }
 	}
 	

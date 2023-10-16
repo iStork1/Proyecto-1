@@ -1,10 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sede {
+public class Sede implements Serializable{
 	public ArrayList<Usuario> Empleados=new ArrayList<Usuario>();
 	private String nombre;
 	private String direccion;

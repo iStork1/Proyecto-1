@@ -11,7 +11,7 @@ public class Vehiculo {
 	private String modelo;
 	private String color;
 	private String transmision;
-    private String estado;
+    private String estado;//disponible,alquilado,mantenimiento o --
     private Sede sedeUbicado;
     private LocalDateTime fechaDisponible;
     private boolean disponible;
@@ -19,7 +19,7 @@ public class Vehiculo {
     
 
     // Constructor
-    public Vehiculo(Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible, Usuario clienteTiene) {
+    public Vehiculo(Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible,String placa) {
         this.categoria=categoria;
     	this.modelo = modelo;
         this.color = color;
@@ -28,8 +28,10 @@ public class Vehiculo {
         this.sedeUbicado = sedeUbicado;
         this.fechaDisponible = fechaDisponible;
         this.disponible = disponible;
-        this.clienteTiene = clienteTiene;
+
         this.registro= new Registro();
+        
+        this.placa = placa;
     }
     public boolean isDisponible() {
 		return disponible;
