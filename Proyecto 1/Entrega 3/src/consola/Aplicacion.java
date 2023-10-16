@@ -59,6 +59,31 @@ public class Aplicacion {
 			
 			if (opcion>0 & opcion<=nOpciones)
 			{//TODO ejecutar opciones
+				//OPCIONES:
+//				//todos/puede alquilar
+//				String o1 = "1. Alquilar un vehículo";
+//				String o2 = "2. Reservar un vehículo.";
+//				String o3 = "3. Modificar una reserva.";
+//				
+//				//empleados
+//				String o4 = "4. Reportar novedad vehículo."; //mantenimiento o algo así
+//				String o5 = "5. Entrega vehículo"; //conductores adicionales y cosas así, modificar el alquiler
+//				String o6 = "6. Recibir vehículo"; //entrega, recibir en la empresa}
+//				
+//				String o7 ="7. Reserva especial para un cliente interno";//enviar un vehiculo de una sede a otra
+//				String o8 = "8. Actualizar el estado de un carro."; //mantenimiento, se estima una fecha cuando vuelva a estar disponible
+//				
+//				
+//				//admin local / sede
+//				
+//				String o9 ="9. Crear una cuenta para un empleado";
+//				//admin general
+//				String o10 = "9.  Agregar un vehículo al inventario.";
+//				String o11 = "10.  Dar de baja un vehículo en el inventario.";
+//				String o12 = "11. Crear una sede.";
+//				String o13 = "12. Modificar información de una sede.";
+				
+				
 				if (opcion ==1) {this.renticar.alquilarVehiculo();}
 				
 			}
