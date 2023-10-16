@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Usuario {
 
-	private String usuario;
+	private String username;
 	private String contrasenia;
 	private String rol;
 	
@@ -19,16 +19,15 @@ public class Usuario {
 	
 	
 	public Usuario(String usuario, String contrasenia, String rol) {
-		super();
-		this.usuario = usuario;
+		this.username = usuario;
 		this.contrasenia = contrasenia;
 		this.rol = rol;
 	}
 	
 	
 	public boolean verificarCredenciales(String pUsuario, String pContrasenia) {
-		if (pUsuario == usuario) {
-			if (pContrasenia == contrasenia) {
+		if (pUsuario.equals(username)) {
+			if (pContrasenia.equals(contrasenia)) {
 				return true;
 			} else {
 				return false;
