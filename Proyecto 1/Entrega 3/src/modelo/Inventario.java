@@ -1,35 +1,42 @@
 package modelo;
 
 import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.Map.Entry;
 
 public class Inventario {
-	Map<String, List<Vehiculo>> Vehiculos = new HashMap<>();
-	File archivo;
-	public Inventario(Map<String, List<Vehiculo>> Vehiculos) {
-		this.Vehiculos=Vehiculos;
-	}
-	public Map<String, List<Vehiculo>> getInventario(){
+	private Map<String, ArrayList<Vehiculo>> Vehiculos = new HashMap<>();
+	private File archivo;
+	public Map<String, ArrayList<Vehiculo>> getInventario(){
 		return Vehiculos;	
 	}
 	private Vehiculo getVehiculo(String placa) {
-		for (Map.Entry<String, List<Vehiculo>> entrada : Vehiculos.entrySet()) {
+		for (Entry<String, ArrayList<Vehiculo>> entrada : Vehiculos.entrySet()) {
 		    String sede = entrada.getKey();
 		    List<Vehiculo> listaDeVehiculos = entrada.getValue();
-		    System.out.println("Sede: " + sede);
+//		    System.out.println("Sede: " + sede); para probar que funcione
 		    for (Vehiculo vehiculo : listaDeVehiculos) {
                 if (vehiculo.getPlaca().equals(placa)){
                 	return vehiculo;
                 }
             }
         }
+		System.out.println("No se encontró el vehiculo");
 		return null;
 	}
 	public Registro getLogVehiculo (String placa) {
-		return null;
+		Vehiculo vehiculo=getVehiculo(placa);
+		Registro log=vehiculo.getRegistro();
+		return log;
 		
 	}
-	public void cambiarSedeVehiculo() {
+	public void cambiarSedeVehiculo(Vehiculo vehiculo,Sede sedeDondeSeRecoje , Sede sedeDondeSeDeja) {
+		ArrayList<Vehiculo> ListaSedeDondeSeRecoje=Vehiculos.get(sedeDondeSeRecoje.getnombre());
+		ArrayList<Vehiculo> ListaSedeDondeSeDeja=Vehiculos.get(sedeDondeSeDeja.getnombre());
+		ListaSedeDondeSeRecoje.remove(vehiculo);
+		ListaSedeDondeSeDeja.add(vehiculo);
 		
 	}
 	public void agregarVehiculo(Vehiculo vehiculo) {
@@ -39,12 +46,51 @@ public class Inventario {
             listaDeVehiculos.add(vehiculo);
 	 }
 		else {
-			List<Vehiculo> nuevaListaDeVehiculos = new ArrayList<>();
+			ArrayList<Vehiculo> nuevaListaDeVehiculos = new ArrayList<>();
             nuevaListaDeVehiculos.add(vehiculo);
             Vehiculos.put(vehiculo.getsedeUbicado().getnombre(), nuevaListaDeVehiculos);
 		}
 	}
 	public void eliminarVehiculo(String placa) {
+		Vehiculo vehiculo=getVehiculo(placa);
+		String SedeVehiculo=vehiculo.getnombreSede();
+		ArrayList<Vehiculo> listaVehiculos = Vehiculos.get(SedeVehiculo);
+		listaVehiculos.remove(vehiculo);
+	}
+	public Inventario(File archivo)
+	{
+		
+		this.archivo = archivo;
+	}
+	public Vehiculo conseguirCarro(LocalDateTime fecha ,Sede sede,Categoria categoria ) {
+		String nombreSede=sede.getnombre();
+		List<Vehiculo> listaDeVehiculosEnSede = Vehiculos.get(nombreSede);
+		for (Vehiculo vehiculo: listaDeVehiculosEnSede) {
+			if (vehiculo.estaDisponible(fecha, categoria)) {
+				return vehiculo;
+			}
+		}
+		return null;
 		
 	}
-}
+	public void iniciarInventario() {
+		String rutaArchivo = "./data/inventario.txt";
+		archivo= new File(rutaArchivo);
+		if (archivo.exists()) {
+            System.out.println("El archivo ya existe.");
+        } else {
+            try {
+                // Intenta crear el archivo
+                boolean creado = archivo.createNewFile();
+                if (creado) {
+                    System.out.println("El archivo se ha creado exitosamente.");
+                } else {
+                    System.out.println("No se pudo crear el archivo.");
+                }
+            } catch (IOException e) {
+                System.out.println("Error al crear el archivo: " + e.getMessage());
+            }
+        }
+    }
+	}
+	

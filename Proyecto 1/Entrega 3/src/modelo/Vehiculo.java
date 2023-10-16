@@ -1,8 +1,11 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Vehiculo {
+	private Categoria categoria;
+	private Registro registro;
 	private String placa;
 	private String marca;
 	private String modelo;
@@ -10,24 +13,48 @@ public class Vehiculo {
 	private String transmision;
     private String estado;
     private Sede sedeUbicado;
-    private LocalDate fechaDisponible;
-    private boolean limpieza;
-    private boolean mantenimiento;
+    private LocalDateTime fechaDisponible;
+    private boolean disponible;
     private Usuario clienteTiene;
+    
 
     // Constructor
-    public Vehiculo(String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDate fechaDisponible, boolean limpieza, boolean mantenimiento, Usuario clienteTiene) {
-        this.modelo = modelo;
+    public Vehiculo(Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible, Usuario clienteTiene) {
+        this.categoria=categoria;
+    	this.modelo = modelo;
         this.color = color;
         this.transmision = transmision;
         this.estado = estado;
         this.sedeUbicado = sedeUbicado;
         this.fechaDisponible = fechaDisponible;
-        this.limpieza = limpieza;
-        this.mantenimiento = mantenimiento;
+        this.disponible = disponible;
         this.clienteTiene = clienteTiene;
+        this.registro= new Registro();
     }
-	
+    public boolean isDisponible() {
+		return disponible;
+	}
+	public void setDisponible(boolean disponible) {
+		this.disponible = disponible;
+	}
+
+    public boolean estaDisponible(LocalDateTime fecha,Categoria categoria) {
+		if (categoria.equals(this.categoria) && fecha.isAfter(fechaDisponible))  {
+			return true;
+		}
+		else {
+			return false;
+		}
+    }
+    
+    public void setEstado(String estado,Usuario clienteTiene) {
+    	this.estado=estado;
+    	LocalDateTime fechaDisponible = LocalDateTime.now();
+    	this.registro.agregarRegistro(fechaDisponible, estado, clienteTiene);
+    }
+    public Registro getRegistro() {
+		return registro;
+	}
 	public String getnombreSede() {
 		return sedeUbicado.getnombre();
 	}

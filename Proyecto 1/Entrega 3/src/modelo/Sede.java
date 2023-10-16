@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,11 +8,17 @@ public class Sede {
 	public ArrayList<Usuario> Empleados=new ArrayList<Usuario>();
 	private String nombre;
 	private String direccion;
-	private String HorariosAtencion;
+	private HorarioAtencion horariosAtencion;
 	
 	
-	public Sede() {
+	public Sede(String nombre, String direccion, HorarioAtencion horariosAtencion) {
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.horariosAtencion = horariosAtencion;
+	}
+	public boolean dentroHorariosAtencion(LocalDateTime fecha) {
 		
+		return horariosAtencion.disponibleEnHoras(fecha);
 	}
 	public String getnombre() {
 
