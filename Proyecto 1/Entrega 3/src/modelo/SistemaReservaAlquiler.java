@@ -73,10 +73,10 @@ public class SistemaReservaAlquiler {
 	
 	
 	public void crearAlquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException 
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario) throws IOException 
 	{
 		alquilerEnCurso = new Alquiler(tipoCarro, sedeDondeRecogera,  fechaRecoleccion,
-				sedeDondeSeEntrega, fechaEntrega);
+				sedeDondeSeEntrega, fechaEntrega,inventario);
 		
 		alquileres.add(alquilerEnCurso);
 		

@@ -2,7 +2,7 @@ package modelo;
 
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Usuario implements Serializable{
 
@@ -13,9 +13,10 @@ public class Usuario implements Serializable{
 	private String nombres;
 	private String telefono;
 	private String email;
-	private LocalDate fechaNacimiento;
+	private LocalDateTime fechaNacimiento;
 	private String nacionalidad;
 	private BufferedImage imagenDocumento;
+	private Licencia licencia;
 	
 	
 	
@@ -53,13 +54,14 @@ public class Usuario implements Serializable{
 		}
 	}
 	
-	public void aniadirDatosCliente(String nom, String tel, String ema, LocalDate fecha, String nacio, BufferedImage imagen) {
+	public void aniadirDatosCliente(String nom, String tel, String ema, LocalDateTime fecha, String nacio, BufferedImage imagen, Licencia licencia) {
 		nombres = nom;
 		telefono = tel;
 		email = ema;
 		fechaNacimiento = fecha;
 		nacionalidad = nacio;
 		imagenDocumento = imagen;
+		this.licencia=licencia;
 	}
 	
 	

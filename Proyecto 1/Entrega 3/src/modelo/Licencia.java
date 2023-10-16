@@ -1,18 +1,18 @@
 package modelo;
 
 import java.awt.image.BufferedImage;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Licencia {
 
 	private String numeroLic;
 	private String paisExpedicion;
-	private LocalDate fechaVencimientoLic;
+	private LocalDateTime fechaVencimientoLic;
 	private BufferedImage imagenLic;
 	
 	
 	
-	public Licencia(String num, String pais, LocalDate fecha, BufferedImage imagen) {
+	public Licencia(String num, String pais, LocalDateTime fecha, BufferedImage imagen) {
 		numeroLic = num;
 		paisExpedicion = pais;
 		fechaVencimientoLic = fecha;

@@ -12,15 +12,21 @@ public class Alquiler implements Serializable{
 	private LocalDateTime fechaEntrega;
 	private int valorServicio;
 //	-otrosConductores:Licencia[]
+	
+	
+	
 	public Alquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) {
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario) {
 		this.tipoCarro = tipoCarro;
 		this.sedeDondeRecogera = sedeDondeRecogera;
 		this.fechaRecoleccion = fechaRecoleccion;
 		this.sedeDondeSeEntrega = sedeDondeSeEntrega;
 		this.fechaEntrega = fechaEntrega;
 		
-//		if ()
+		if (inventario.conseguirCarro(fechaRecoleccion, sedeDondeRecogera, tipoCarro)==null)
+		{
+			//no se puede hacer el alquiler
+		}
 		
 		
 		

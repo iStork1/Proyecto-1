@@ -165,4 +165,9 @@ public class ControlUsuarios {
 	{
 		return this.usuarioActual.getRol();
 	}
+	
+	public Usuario getUsuario()
+	{
+		return this.usuarioActual;
+	}
 }

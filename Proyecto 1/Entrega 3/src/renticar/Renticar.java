@@ -17,6 +17,7 @@ import modelo.Categoria;
 import modelo.ControlUsuarios;
 import modelo.HorarioAtencion;
 import modelo.Inventario;
+import modelo.Licencia;
 import modelo.Sede;
 import modelo.SistemaReservaAlquiler;
 import modelo.Usuario;
@@ -113,7 +114,8 @@ public class Renticar {
 //		Categoria tipoCarro, Sede sedeDondeRecogera, Sede lugarRecoleccion, LocalDate fechaRecoleccion,
 //		Sede sedeDondeSeEntrega, LocalDate fechaEntrega, int valorServicio
 		
-		
+		if (!this.controlUsuarios.getUsuario().puedeAlquilar())
+		{this.completarDatos();}
 		
 		Categoria tipoCarro = this.seleccionarCategoria();
 		
@@ -134,7 +136,7 @@ public class Renticar {
 	
 		
 		this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,
-				sedeDondeSeEntrega, fechaEntrega);
+				sedeDondeSeEntrega, fechaEntrega, this.inventario);
 	}
 	
 	private Categoria seleccionarCategoria()
@@ -242,10 +244,43 @@ public class Renticar {
 		
 		
 		this.controlUsuarios.crearUsuario(username, password, rol);
+		this.controlUsuarios.verificarCredencialesUsuario(username, password);
+		this.completarDatos();
 		
 		System.out.println("Usuario creado correctamente.");
 	}
 	
+	public void completarDatos()
+	{
+		Usuario usuario = this.controlUsuarios.getUsuario();
+		
+		//Licencia licencia = //todo
+		String nombre = Aplicacion.input("Ingrese su nombre: ");
+		String telefono = Aplicacion.input("Ingrese su telefono: ");
+		String email = Aplicacion.input("Ingrese su nombre: ");
+		System.out.println("Ingrese su fecha de nacimiento");
+		LocalDateTime fechaNacimiento = this.definirFecha();
+		String pais = Aplicacion.input("Ingrese su país de nacimiento: ");
+		
+		
+		Licencia licencia = this.definirLicencia();
+				
+		usuario.aniadirDatosCliente(nombre, telefono, email, fechaNacimiento, pais, null,licencia);
+		System.out.println("Datos agregados correctamente.");
+		
+		
+		
+	}
+	
+	private Licencia definirLicencia()
+	{
+		System.out.println("Agrege información de la licencia");
+		String numero = Aplicacion.input("Ingrese el numero de la licencia: ");
+		String pais = Aplicacion.input("Ingrese el pais de expedición: ");
+		LocalDateTime fechaVencimiento = this.definirFecha();
+		Licencia licencia = new Licencia(numero, pais, fechaVencimiento, null);
+		return licencia;
+	}
 	
 	
 	private String seleccionarRol()
