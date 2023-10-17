@@ -17,7 +17,13 @@ public class Vehiculo {
     private boolean disponible;
     private Usuario clienteTiene;
     
+    private Alquiler alquiler;
     
+    
+    public void setAlquiler(Alquiler alquiler)
+    	{this.alquiler=alquiler;}
+    public Alquiler getAlquiler()
+    {return alquiler;}
     
 
     // Constructor

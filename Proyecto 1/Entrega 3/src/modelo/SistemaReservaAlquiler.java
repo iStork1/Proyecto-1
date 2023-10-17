@@ -73,10 +73,10 @@ public class SistemaReservaAlquiler {
 	
 	
 	public boolean crearAlquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario) throws IOException 
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario,Usuario usuario) throws IOException 
 	{
 		alquilerEnCurso = new Alquiler(tipoCarro, sedeDondeRecogera,  fechaRecoleccion,
-				sedeDondeSeEntrega, fechaEntrega,inventario);
+				sedeDondeSeEntrega, fechaEntrega,inventario,usuario);
 		
 		if(alquilerEnCurso.hayVehiculo())
 		{

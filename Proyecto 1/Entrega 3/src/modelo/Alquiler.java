@@ -12,25 +12,34 @@ public class Alquiler implements Serializable{
 	private LocalDateTime fechaEntrega;
 	private int valorServicio;
 	private Vehiculo vehiculoAlquilado;
+	private Usuario usuario;
 //	-otrosConductores:Licencia[]
 	
 	
 	
 	public Alquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario) {
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario,Usuario usuario) {
 		this.tipoCarro = tipoCarro;
 		this.sedeDondeRecogera = sedeDondeRecogera;
 		this.fechaRecoleccion = fechaRecoleccion;
 		this.sedeDondeSeEntrega = sedeDondeSeEntrega;
 		this.fechaEntrega = fechaEntrega;
 		
+		this.usuario = usuario;
+		
 		vehiculoAlquilado=inventario.conseguirCarro(fechaRecoleccion, sedeDondeRecogera, tipoCarro);
+		
+		if (this.hayVehiculo())
+		{this.vehiculoAlquilado.setAlquiler(this);}
 		
 		
 		
 		//this.valorServicio = valorServicio;
 	}
-	
+	public Usuario getUsuario()
+	{
+		return this.usuario;
+	}
 	public boolean hayVehiculo()
 	{
 		return this.vehiculoAlquilado!=null;

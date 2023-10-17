@@ -136,7 +136,7 @@ public class Renticar {
 	
 		
 		if (this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,
-				sedeDondeSeEntrega, fechaEntrega, this.inventario))
+				sedeDondeSeEntrega, fechaEntrega, this.inventario,this.controlUsuarios.getUsuario()))
 		{System.out.println("El alquiler fue creado");}
 		
 		else {System.out.println("El alquiler no fue creado, no se encontró un vehículo que cumpla con sus requerimientos");}
@@ -400,13 +400,31 @@ public class Renticar {
 		return estados[opcion];
 	}
 	
-//	public void entregarVehiculo()
-//	{
-//		String placa = Aplicacion.input("Ingrese la placa del vehículo: ");
-//		
-//		Vehiculo vehiculo = this.inventario.getVehiculo(placa);
-//		vehiculo.setEstado(estado, null);
-//	}
+	public void entregarVehiculo()
+	{
+		String placa = Aplicacion.input("Ingrese la placa del vehículo para entregar: ");
+		
+		Vehiculo vehiculo = this.inventario.getVehiculo(placa);
+		
+		
+		vehiculo.setEstado("alquilado", vehiculo.getAlquiler().getUsuario());
+		
+		vehiculo.setDisponible(false);
+		
+		//TODO: agregar conductores adicionales
+	}
+	
+	public void recibirVehiculo()
+	{
+		String placa = Aplicacion.input("Ingrese la placa del vehículo para recibir: ");
+		
+		Vehiculo vehiculo = this.inventario.getVehiculo(placa);
+		
+		
+		vehiculo.setEstado("disponible", null);
+		
+		vehiculo.setDisponible(true);
+	}
 	
 	
 

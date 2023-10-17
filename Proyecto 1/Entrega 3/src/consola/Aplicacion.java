@@ -118,8 +118,8 @@ public class Aplicacion {
 				
 				
 				if (opcion ==4) {this.renticar.cambiarEstadoVehiculo();}
-				//if (opcion ==5) {this.renticar.entregarVehiculo();}
-				//if (opcion ==6) {this.renticar.recibirVehiculo();}
+				if (opcion ==5) {this.renticar.entregarVehiculo();}
+				if (opcion ==6) {this.renticar.recibirVehiculo();}
 				
 				if (opcion == 9) {this.renticar.crearUsuarioEmpleado();}
 				if (opcion == 10) {this.renticar.agregarVehiculo();}
