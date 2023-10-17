@@ -33,7 +33,7 @@ public class Alquiler implements Serializable{
 	
 	public boolean hayVehiculo()
 	{
-		return this.vehiculoAlquilado==null;
+		return this.vehiculoAlquilado!=null;
 	}
 	
 	
