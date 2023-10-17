@@ -135,8 +135,11 @@ public class Renticar {
 		
 	
 		
-		this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,
-				sedeDondeSeEntrega, fechaEntrega, this.inventario);
+		if (this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,
+				sedeDondeSeEntrega, fechaEntrega, this.inventario))
+		{System.out.println("El alquiler fue creado");}
+		
+		else {System.out.println("El alquiler no fue creado, no se encontró un vehículo que cumpla con sus requerimientos");}
 	}
 	
 	private Categoria seleccionarCategoria()

@@ -17,6 +17,8 @@ public class Vehiculo {
     private boolean disponible;
     private Usuario clienteTiene;
     
+    
+    
 
     // Constructor
     public Vehiculo(Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible,String placa) {

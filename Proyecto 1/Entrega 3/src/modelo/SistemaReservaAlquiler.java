@@ -72,18 +72,22 @@ public class SistemaReservaAlquiler {
 	
 	
 	
-	public void crearAlquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+	public boolean crearAlquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
 			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario) throws IOException 
 	{
 		alquilerEnCurso = new Alquiler(tipoCarro, sedeDondeRecogera,  fechaRecoleccion,
 				sedeDondeSeEntrega, fechaEntrega,inventario);
 		
+		if(alquilerEnCurso.hayVehiculo())
+		{
 		alquileres.add(alquilerEnCurso);
 		
 		alquilerEnCurso = null;
 		
 		this.guardarReservasAlquileres();
-		
+		return true;
+		}
+		else {return false;}
 	};
 	
 	public void crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDate fechaRecoleccion,
