@@ -426,6 +426,11 @@ public class Renticar {
 		vehiculo.setDisponible(true);
 	}
 	
+	public boolean loggin(String usuario,String password) {
+		return this.getcontrolUsuarios().verificarCredencialesUsuario(usuario, password);
+		
+	}
+	
 	 
 
 }
