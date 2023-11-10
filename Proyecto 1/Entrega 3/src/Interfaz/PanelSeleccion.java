@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -34,21 +35,27 @@ public class PanelSeleccion extends JPanel implements ActionListener{
 		btnVerVehiculos = new JButton("Ver vehículos");
 		btnVerVehiculos.addActionListener(this);
 		btnVerVehiculos.setActionCommand("VerVerhiculo");
+		btnVerVehiculos.setPreferredSize(new Dimension(150,30));
 		btnRegistrarVehiculos = new JButton("Registrar vehículo");
 		btnRegistrarVehiculos.addActionListener(this);
 		btnRegistrarVehiculos.setActionCommand("RegistrarVerhiculo");
+		btnRegistrarVehiculos.setPreferredSize(new Dimension(150,30));
 		btnEliminarVehiculos = new JButton("Eliminar vehículo");
 		btnEliminarVehiculos.addActionListener(this);
 		btnEliminarVehiculos.setActionCommand("EliminarVerhiculo");
+		btnEliminarVehiculos.setPreferredSize(new Dimension(150,30));
 		btnRegistrarEmpleado = new JButton("Registrar empleado");
 		btnRegistrarEmpleado.addActionListener(this);
 		btnRegistrarEmpleado.setActionCommand("RegistrarEmpleado");
+		btnRegistrarEmpleado.setPreferredSize(new Dimension(150,30));
 		btnCrearReserva = new JButton("Crear reserva");
 		btnCrearReserva.addActionListener(this);
 		btnCrearReserva.setActionCommand("CrearReserva");
+		btnCrearReserva.setPreferredSize(new Dimension(150,30));
 		btnModificarReserva = new JButton("Modificar reserva");
 		btnModificarReserva.addActionListener(this);
 		btnModificarReserva.setActionCommand("ModificarReserva");
+		btnModificarReserva.setPreferredSize(new Dimension(150,30));
 		
 		
 		add(lblTitulo, gbc);
