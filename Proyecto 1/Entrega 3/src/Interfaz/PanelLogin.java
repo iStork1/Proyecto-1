@@ -13,6 +13,7 @@ import javax.swing.*;
 
 public class PanelLogin extends JPanel implements ActionListener{
 	
+	private JLabel titulo;
 	private JTextField usernameField;
     private JPasswordField passwordField;
     private VentanaPrincipal ventana;
@@ -20,7 +21,7 @@ public class PanelLogin extends JPanel implements ActionListener{
     public PanelLogin(VentanaPrincipal ventana) {
     	this.ventana = ventana;
     	
-    	
+    	titulo = new JLabel("Iniciar sesiÛn");
     	setPreferredSize(new Dimension(400, 300));
         // Configura el dise√±o del panel
         setLayout(new GridBagLayout());
@@ -36,6 +37,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         loginButton.addActionListener(this);
         
         JButton registroButton = new JButton("øNuevo cliente?");
+        
         registroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Aqu√≠ puedes verificar el nombre de usuario y contrase√±a
@@ -59,7 +61,10 @@ public class PanelLogin extends JPanel implements ActionListener{
         gbc.gridwidth = 4;
         gbc.insets = new Insets(10, 10, 10, 10); // M·rgenes internos
         
+        add(titulo, gbc);
         
+        
+        gbc.gridy++;
         add(usernameLabel, gbc);
 
         gbc.gridy++;
@@ -88,6 +93,7 @@ public class PanelLogin extends JPanel implements ActionListener{
                 // Comprueba si las credenciales son correctas (simulado)
                 if (this.ventana.inicioSesion(username,passwordString)) {
                     JOptionPane.showMessageDialog(null, "Inicio de sesi√≥n exitoso");
+                    this.ventana.mostrarMenu();
                 } else {
                     JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
                 }
