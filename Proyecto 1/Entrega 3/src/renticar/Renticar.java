@@ -53,7 +53,7 @@ public class Renticar {
 		
 		controlUsuarios.crearAdministrador(this.administradorGeneral,"admin");
 		
-		this.sistemaReservaAlquiler = new SistemaReservaAlquiler(archivoReservaAlquiler);//TODO
+		//this.sistemaReservaAlquiler = new SistemaReservaAlquiler(archivoReservaAlquiler);//TODO
 		
 		this.inventario = new Inventario(archivoInventario);
 		
@@ -426,6 +426,6 @@ public class Renticar {
 		vehiculo.setDisponible(true);
 	}
 	
-	
+	 
 
 }
