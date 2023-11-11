@@ -314,18 +314,18 @@ public class Renticar {
 		
 	}
 	
-	public void agregarVehiculo()
+	public void agregarVehiculo(String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado)
 	{
 		//Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible, Usuario clienteTiene
 		
-		Categoria categoria = this.seleccionarCategoria();
-		String modelo = Aplicacion.input("Ingrese el modelo: ");
-		String color = Aplicacion.input("Ingrese el color: ");
-		String placa = Aplicacion.input("Ingrese la placa: ");
-		String transmision = Aplicacion.input("Ingrese el tipo de transmision: ");
+//		Categoria categoria = this.seleccionarCategoria();
+//		String modelo = Aplicacion.input("Ingrese el modelo: ");
+//		String color = Aplicacion.input("Ingrese el color: ");
+//		String placa = Aplicacion.input("Ingrese la placa: ");
+//		String transmision = Aplicacion.input("Ingrese el tipo de transmision: ");
 		String estado = "disponible";
-		System.out.println("Seleccione el tipo de sede");
-		Sede sedeUbicado = this.seleccionarSede();
+//		System.out.println("Seleccione el tipo de sede");
+//		Sede sedeUbicado = this.seleccionarSede();
 		LocalDateTime fechaDisponible = LocalDateTime.now();
 		
 				

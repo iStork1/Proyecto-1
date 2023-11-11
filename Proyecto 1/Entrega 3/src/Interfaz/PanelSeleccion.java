@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 public class PanelSeleccion extends JPanel implements ActionListener{
 
+	private VentanaPrincipal ventana; 
 	private JLabel lblTitulo;
 	private JButton btnVerVehiculos;
 	private JButton btnRegistrarVehiculos;
@@ -22,7 +23,8 @@ public class PanelSeleccion extends JPanel implements ActionListener{
 	private JButton btnCrearReserva;
 	private JButton btnModificarReserva;
 	
-	public PanelSeleccion() {
+	public PanelSeleccion(VentanaPrincipal ventana) {
+		this.ventana=ventana;
 		// TODO Auto-generated constructor stub
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -81,7 +83,7 @@ public class PanelSeleccion extends JPanel implements ActionListener{
 		if(e.getActionCommand().equals("VerVerhiculo")){
 			//Cambiar a la ventana a la de ver vehículos
 		}else if(e.getActionCommand().equals("RegistrarVerhiculo")){
-			//Cambiar ventana a registro de vehículos
+			this.ventana.mostrarPanelVehiculo();
 		}else if(e.getActionCommand().equals("EliminarVerhiculo")){
 			//Cambiar ventana a eliminar vehículos
 		}else if(e.getActionCommand().equals("RegistrarEmpleado")){

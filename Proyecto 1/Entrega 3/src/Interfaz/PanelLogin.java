@@ -27,7 +27,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         setLayout(new GridBagLayout());
 
         // Crea etiquetas y campos de texto
-        JLabel usernameLabel = new JLabel("Usuario:");
+        JLabel usernameLabel = new JLabel("Usuario");
         JLabel passwordLabel = new JLabel("Contraseña");
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
@@ -66,7 +66,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         
         gbc.gridy++;
         add(usernameLabel, gbc);
-
+        
         gbc.gridy++;
         add(usernameField, gbc);
 
