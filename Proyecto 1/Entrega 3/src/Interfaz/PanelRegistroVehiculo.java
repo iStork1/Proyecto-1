@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -47,11 +48,12 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.insets = new Insets(10, 10, 10, 10);
 		
 		
-		lblTitulo = new JLabel("Ingrese informaciÃ³n para registrar vehÃ­culo");
+		lblTitulo = new JLabel("Ingrese información para registrar vehículo");
+		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15)); //hay que buscar una especie de directorio de funtes
 		lblId = new JLabel("ID:");
 		lblMarca = new JLabel("Marca:");
 		lblPlaca = new JLabel("Placa:");
-		lblTipo = new JLabel("Tipo de transmisiÃ³n:");
+		lblTipo = new JLabel("Tipo de transmisión:");
 		lblSede = new JLabel("Sede:");
 		lblModelo = new JLabel("Modelo:");
 		lblColor = new JLabel("Color:");
@@ -61,16 +63,23 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
-		txtCapacidad = new JTextField();
-		txtColor = new JTextField();
-		txtId = new JTextField();
-		txtMarca = new JTextField();
-		txtTipo = new JTextField();
-		txtSede = new JTextField();
-		txtPlaca = new JTextField();
-		txtModelo = new JTextField();
+		txtCapacidad = new JTextField(20);
+		txtColor = new JTextField(20);
+		txtId = new JTextField(20);
+		txtMarca = new JTextField(20);
+		txtTipo = new JTextField(20);
+		txtSede = new JTextField(20);
+		txtPlaca = new JTextField(20);
+		txtModelo = new JTextField(20);
 		
+		//hice esto para poner el titulo en el centro
+		add(new JLabel(), gbc);
+		gbc.gridx++;
 		add(lblTitulo, gbc);
+		gbc.gridx++;
+		add(new JLabel(), gbc);
+		
+		gbc.gridx=0;
 		gbc.gridy++;
 		add(lblId, gbc);
 		gbc.gridy++;
@@ -88,7 +97,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.gridy++;
 		add(lblCapacidad, gbc);
 		
-		gbc.gridx++;
+		gbc.gridx+=4;
 		gbc.gridy = 0;
 		
 		gbc.gridy++;
@@ -111,7 +120,12 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.gridx = 0;
 		gbc.gridy++;
 		
+		//lo mismo que con el título
+		add(new JLabel(), gbc);
+		gbc.gridx++;
 		add(btnRegistrar, gbc);
+		add(new JLabel(), gbc);
+		gbc.gridx++;
 	}
 
 	@Override

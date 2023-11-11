@@ -30,16 +30,19 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.cardLayout =  new CardLayout();
 		this.loginPanel = new PanelLogin(this);
-		this.contPanel.setLayout(cardLayout);
-		this.seleccionPanel = new PanelSeleccion();
+		this.seleccionPanel = new PanelSeleccion(this);
 		this.registroVehiculoPanel = new PanelRegistroVehiculo();
+		
+		this.contPanel.setLayout(cardLayout);
+		
+		
 
 		
 		
 		contPanel.add(loginPanel, "login");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
-        cardLayout.show(contPanel, "registroVehiculo");
+        cardLayout.show(contPanel, "login");
         
         setLayout(new BorderLayout());
 
@@ -59,6 +62,10 @@ public class VentanaPrincipal extends JFrame {
 	public void mostrarMenu() 
 	{
 		cardLayout.show(contPanel, "menu");
+	}
+	public void mostrarPanelVehiculo()
+	{
+		cardLayout.show(contPanel, "registroVehiculo");
 	}
 	
 
