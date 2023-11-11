@@ -12,8 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PanelRegistroVehiculo extends JPanel implements ActionListener {
+import modelo.Categoria;
+import modelo.Sede;
 
+public class PanelRegistroVehiculo extends JPanel implements ActionListener {
+	private VentanaPrincipal ventana;
 	
 	private JLabel lblTitulo;
 	private JLabel lblId;
@@ -37,8 +40,9 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	private JButton btnRegistrar;
 	
 	
-	public PanelRegistroVehiculo() {
+	public PanelRegistroVehiculo(VentanaPrincipal ventana) {
 		// TODO Auto-generated constructor stub
+		this.ventana = ventana;
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -132,7 +136,9 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Registrar")) {
-			//Cambiar los páneles por el pánel de selección de ventana y guardar los datos de los txt's
+//			TODO agregar las cosas para registrar
+//			this.ventana.registrarVehiculo(); String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado
+			this.ventana.mostrarMenu();
 		}
 	}
 

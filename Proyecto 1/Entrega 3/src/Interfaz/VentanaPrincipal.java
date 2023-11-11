@@ -4,7 +4,9 @@ import java.awt.CardLayout;
 import java.io.IOException;
 
 import Interfaz.PanelLogin;
+import modelo.Categoria;
 import modelo.ControlUsuarios;
+import modelo.Sede;
 import renticar.Renticar;
 
 import javax.swing.JFrame;
@@ -17,7 +19,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel loginPanel;
 	private JPanel seleccionPanel;
 	private JPanel registroVehiculoPanel;
-	private JPanel contPanel= new JPanel();
+	private JPanel contPanel= new JPanel(); //este es un contenedor
 
 
 	public VentanaPrincipal() throws IOException {
@@ -29,9 +31,11 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		this.cardLayout =  new CardLayout();
+		
+		//paneles
 		this.loginPanel = new PanelLogin(this);
 		this.seleccionPanel = new PanelSeleccion(this);
-		this.registroVehiculoPanel = new PanelRegistroVehiculo();
+		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
 		
 		this.contPanel.setLayout(cardLayout);
 		
@@ -53,12 +57,19 @@ public class VentanaPrincipal extends JFrame {
         
 	}
 	
+	//metodos para conectar con la lógica
 	public boolean inicioSesion(String username,String passwordString){
 		
 		//cardLayout.show(contPanel, "menu");
 		return this.renticar.loggin(username, passwordString);
 	}
 	
+	public void registrarVehiculo(String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado) 
+	{
+		this.renticar.agregarVehiculo(modelo,categoria,color,placa,transmision,sedeUbicado);
+	}
+	
+	//metodos para cambiar layouts
 	public void mostrarMenu() 
 	{
 		cardLayout.show(contPanel, "menu");
