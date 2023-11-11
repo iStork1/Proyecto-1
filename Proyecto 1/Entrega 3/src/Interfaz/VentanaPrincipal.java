@@ -18,7 +18,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel seleccionPanel;
 	private JPanel registroVehiculoPanel;
 	private JPanel contPanel= new JPanel();
-
+	private JPanel principalPanel;
 
 	public VentanaPrincipal() throws IOException {
 		
@@ -33,13 +33,15 @@ public class VentanaPrincipal extends JFrame {
 		this.contPanel.setLayout(cardLayout);
 		this.seleccionPanel = new PanelSeleccion();
 		this.registroVehiculoPanel = new PanelRegistroVehiculo();
-
+		this.principalPanel=new PanelPrincipal();
 		
 		
 		contPanel.add(loginPanel, "login");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
-        cardLayout.show(contPanel, "registroVehiculo");
+		contPanel.add(principalPanel, "principal");
+		cardLayout.show(contPanel, "principal");
+        
         
         setLayout(new BorderLayout());
 
