@@ -21,7 +21,7 @@ public class Sede implements Serializable{
 		
 		return horariosAtencion.disponibleEnHoras(fecha);
 	}
-	public String getnombre() {
+	public String getNombre() {
 
 		return this.nombre;
 	}

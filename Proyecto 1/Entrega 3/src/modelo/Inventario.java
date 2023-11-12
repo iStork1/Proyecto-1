@@ -33,8 +33,8 @@ public class Inventario {
 		
 	}
 	public void cambiarSedeVehiculo(Vehiculo vehiculo,Sede sedeDondeSeRecoje , Sede sedeDondeSeDeja) {
-		ArrayList<Vehiculo> ListaSedeDondeSeRecoje=Vehiculos.get(sedeDondeSeRecoje.getnombre());
-		ArrayList<Vehiculo> ListaSedeDondeSeDeja=Vehiculos.get(sedeDondeSeDeja.getnombre());
+		ArrayList<Vehiculo> ListaSedeDondeSeRecoje=Vehiculos.get(sedeDondeSeRecoje.getNombre());
+		ArrayList<Vehiculo> ListaSedeDondeSeDeja=Vehiculos.get(sedeDondeSeDeja.getNombre());
 		ListaSedeDondeSeRecoje.remove(vehiculo);
 		ListaSedeDondeSeDeja.add(vehiculo);
 		
@@ -48,7 +48,7 @@ public class Inventario {
 		else {
 			ArrayList<Vehiculo> nuevaListaDeVehiculos = new ArrayList<>();
             nuevaListaDeVehiculos.add(vehiculo);
-            Vehiculos.put(vehiculo.getsedeUbicado().getnombre(), nuevaListaDeVehiculos);
+            Vehiculos.put(vehiculo.getsedeUbicado().getNombre(), nuevaListaDeVehiculos);
 		}
 	}
 	public void eliminarVehiculo(String placa) {
@@ -63,7 +63,7 @@ public class Inventario {
 		this.archivo = archivo;
 	}
 	public Vehiculo conseguirCarro(LocalDateTime fecha ,Sede sede,Categoria categoria ) {
-		String nombreSede=sede.getnombre();
+		String nombreSede=sede.getNombre();
 		List<Vehiculo> listaDeVehiculosEnSede = Vehiculos.get(nombreSede);
 		for (Vehiculo vehiculo: listaDeVehiculosEnSede) {
 			if (vehiculo.estaDisponible(fecha, categoria)) {

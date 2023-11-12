@@ -81,7 +81,7 @@ public class PanelSeleccion extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("VerVerhiculo")){
-			//Cambiar a la ventana a la de ver vehículos
+			this.ventana.mostrarPanelPrincipal();
 		}else if(e.getActionCommand().equals("RegistrarVerhiculo")){
 			this.ventana.mostrarPanelVehiculo();
 		}else if(e.getActionCommand().equals("EliminarVerhiculo")){

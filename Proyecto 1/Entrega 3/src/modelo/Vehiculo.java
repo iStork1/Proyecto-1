@@ -66,7 +66,7 @@ public class Vehiculo {
 		return registro;
 	}
 	public String getnombreSede() {
-		return sedeUbicado.getnombre();
+		return sedeUbicado.getNombre();
 	}
 
 	public Sede getsedeUbicado() {

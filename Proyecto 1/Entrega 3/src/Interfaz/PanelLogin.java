@@ -92,7 +92,7 @@ public class PanelLogin extends JPanel implements ActionListener{
 
                 // Comprueba si las credenciales son correctas (simulado)
                 if (this.ventana.inicioSesion(username,passwordString)) {
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");
+                    
                     this.ventana.mostrarMenu();
                 } else {
                     JOptionPane.showMessageDialog(null, "Credenciales incorrectas");

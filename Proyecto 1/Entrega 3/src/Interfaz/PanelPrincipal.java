@@ -4,7 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import modelo.Vehiculo;
+
 public class PanelPrincipal extends JPanel implements ActionListener {
+	private VentanaPrincipal ventana;
+	
 	private JLabel lblTitulo;
 	private JLabel lblID;
     private JLabel lblMarca;
@@ -36,7 +40,13 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     private JPanel panelInformacion;
     private JPanel panelImagen;
     private JPanel panelCentro;
-	public PanelPrincipal() {
+    
+    
+    
+	public PanelPrincipal(VentanaPrincipal ventana) {
+		this.ventana = ventana;
+		
+		
 		 setLayout(new BorderLayout( ));
 		 panelBotones = new JPanel( );
 		 setSize( 750, 600 );
@@ -169,19 +179,23 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         // TODO Auto-generated method stub
         if(evento.getActionCommand( ).equals( "Consultar" ))
         {
+        	String placa = JOptionPane.showInputDialog("Ingrese la placa del vehiculo");
+        	Vehiculo vehiculo = this.ventana.darVehiculo(placa);
         	
+        	//TODO actualizar datos del vehiculo en  la interfaz
         }
         else if (evento.getActionCommand( ).equals( "Registrar" ))
         {
-            //
+            this.ventana.mostrarPanelVehiculo();
         }
         else if (evento.getActionCommand( ).equals( "Eliminar" ))
         {
-            //
+        	String placa = JOptionPane.showInputDialog("Ingrese la placa del vehiculo");
+        	this.ventana.eliminarVehiculo(placa);
         }
         else if (evento.getActionCommand( ).equals( "Novedades" ))
         {
-            //
+            //cambiar estado vehiculo
         }
         else if (evento.getActionCommand( ).equals( "Grafica" ))
         {

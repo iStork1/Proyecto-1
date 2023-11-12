@@ -1,5 +1,6 @@
 package Interfaz;
 
+import java.awt.Dialog;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,12 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Categoria;
 import modelo.Sede;
+import modelo.Sedes;
 
 public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	private VentanaPrincipal ventana;
@@ -26,18 +30,21 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	private JLabel lblSede;
 	private JLabel lblModelo;
 	private JLabel lblColor;
-	private JLabel lblCapacidad;
+	private JLabel lblCategoria;
 	
 	private JTextField txtId;
 	private JTextField txtMarca;
 	private JTextField txtPlaca;
 	private JTextField txtTipo;
-	private JTextField txtSede;
+	private JComboBox<String> comboSede;
 	private JTextField txtModelo;
 	private JTextField txtColor;
-	private JTextField txtCapacidad;
+	private JComboBox<String> comboCategoria;
 	
 	private JButton btnRegistrar;
+	
+	private Categoria categoria;
+	private Sede sedeUbicado;
 	
 	
 	public PanelRegistroVehiculo(VentanaPrincipal ventana) {
@@ -61,18 +68,50 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		lblSede = new JLabel("Sede:");
 		lblModelo = new JLabel("Modelo:");
 		lblColor = new JLabel("Color:");
-		lblCapacidad = new JLabel("Capacidad:");
+		lblCategoria = new JLabel("Categoria:");
 		
 		btnRegistrar = new JButton("Rgistrar");
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
-		txtCapacidad = new JTextField(20);
+		comboCategoria = new JComboBox<>(Categoria.getCategorias1());
+		
+		comboCategoria.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener la opción seleccionada
+                String seleccion = comboCategoria.getSelectedItem().toString();
+                if (seleccion.equals("Crear una nueva categoria"))
+                {abrirVentanaDialogo();}
+                else if (!seleccion.equals("---")) 
+                {
+                	categoria=Categoria.getCategoria(seleccion);
+                }
+                
+//                JOptionPane.showMessageDialog(null, "Seleccionaste: " + seleccion);
+            }
+        });
+		
 		txtColor = new JTextField(20);
 		txtId = new JTextField(20);
 		txtMarca = new JTextField(20);
 		txtTipo = new JTextField(20);
-		txtSede = new JTextField(20);
+		
+		comboSede = new JComboBox<>(this.ventana.darSedes());
+		comboSede.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener la opción seleccionada
+                String seleccion = comboCategoria.getSelectedItem().toString();
+                if (!seleccion.equals(" ")) 
+                {
+                	sedeUbicado=ventana.darSede(seleccion);
+                }
+                
+//                JOptionPane.showMessageDialog(null, "Seleccionaste: " + seleccion);
+            }
+        });
+		
 		txtPlaca = new JTextField(20);
 		txtModelo = new JTextField(20);
 		
@@ -99,7 +138,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.gridy++;
 		add(lblColor, gbc);
 		gbc.gridy++;
-		add(lblCapacidad, gbc);
+		add(lblCategoria, gbc);
 		
 		gbc.gridx+=4;
 		gbc.gridy = 0;
@@ -113,13 +152,13 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.gridy++;
 		add(txtTipo, gbc);
 		gbc.gridy++;
-		add(txtSede, gbc);
+		add(comboSede, gbc);
 		gbc.gridy++;
 		add(txtModelo, gbc);
 		gbc.gridy++;
 		add(txtColor, gbc);
 		gbc.gridy++;
-		add(txtCapacidad, gbc);
+		add(comboCategoria, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy++;
@@ -131,14 +170,35 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		add(new JLabel(), gbc);
 		gbc.gridx++;
 	}
-
+	
+	 private void abrirVentanaDialogo() {
+	        // Crear una instancia de la VentanaDialogoCategoria
+	        VentanaDialogoCategoria dialogoCategoria = new VentanaDialogoCategoria();
+	        
+	        // Hacer que la ventana de diálogo sea visible
+	        dialogoCategoria.setVisible(true);
+	    }
+	 
+	 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equals("Registrar")) {
 //			TODO agregar las cosas para registrar
-//			this.ventana.registrarVehiculo(); String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado
-			this.ventana.mostrarMenu();
+			String modelo = this.txtModelo.getText();
+			String color = this.txtColor.getText();
+			String placa = this.txtPlaca.getText() ;
+			String transmision = this.txtTipo.getText();
+			
+			if (modelo.equals(null)||color.equals(null)||placa.equals(null)||transmision.equals(null)||this.categoria==null||this.sedeUbicado==null)
+			{
+				JOptionPane.showMessageDialog(null, "Por favor llene todos los campos");
+			}
+			else 
+			{
+				this.ventana.registrarVehiculo(modelo,this.categoria,color,placa,transmision,this.sedeUbicado);// Categoria categoria,,,Sede sedeUbicado
+				this.ventana.mostrarMenu();
+			}
 		}
 	}
 

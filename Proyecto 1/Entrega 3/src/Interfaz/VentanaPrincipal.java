@@ -7,6 +7,7 @@ import Interfaz.PanelLogin;
 import modelo.Categoria;
 import modelo.ControlUsuarios;
 import modelo.Sede;
+import modelo.Vehiculo;
 import renticar.Renticar;
 
 import javax.swing.JFrame;
@@ -40,14 +41,13 @@ public class VentanaPrincipal extends JFrame {
 		this.contPanel.setLayout(cardLayout);
 		this.seleccionPanel = new PanelSeleccion(this);
 		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
-		this.principalPanel=new PanelPrincipal();
+		this.principalPanel=new PanelPrincipal(this);
 
 		
 		contPanel.add(loginPanel, "login");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
-		cardLayout.show(contPanel, "principal");
 
         cardLayout.show(contPanel, "login");
         
@@ -72,6 +72,25 @@ public class VentanaPrincipal extends JFrame {
 		this.renticar.agregarVehiculo(modelo,categoria,color,placa,transmision,sedeUbicado);
 	}
 	
+	public Vehiculo darVehiculo(String placa)
+	{
+		return this.renticar.darVehiculo(placa);
+	}
+	
+	public void eliminarVehiculo(String placa)
+	{
+		this.renticar.eliminarVehiculo(placa);
+	}
+	
+	public String[] darSedes()
+	{
+		return this.renticar.darSedes();
+	}
+	public Sede darSede(String nomSede)
+	{
+		return this.renticar.darSede(nomSede);
+	}
+	
 	//metodos para cambiar layouts
 	public void mostrarMenu() 
 	{
@@ -80,6 +99,11 @@ public class VentanaPrincipal extends JFrame {
 	public void mostrarPanelVehiculo()
 	{
 		cardLayout.show(contPanel, "registroVehiculo");
+	}
+	
+	public void mostrarPanelPrincipal()
+	{
+		cardLayout.show(contPanel, "principal");
 	}
 	
 
