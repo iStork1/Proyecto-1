@@ -21,26 +21,26 @@ public class PanelLogin extends JPanel implements ActionListener{
     public PanelLogin(VentanaPrincipal ventana) {
     	this.ventana = ventana;
     	
-    	titulo = new JLabel("Iniciar sesión");
+    	titulo = new JLabel("Iniciar sesiï¿½n");
     	setPreferredSize(new Dimension(400, 300));
         // Configura el diseÃ±o del panel
         setLayout(new GridBagLayout());
 
         // Crea etiquetas y campos de texto
         JLabel usernameLabel = new JLabel("Usuario");
-        JLabel passwordLabel = new JLabel("Contraseña");
+        JLabel passwordLabel = new JLabel("Contraseï¿½a");
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
 
         // Crea un botÃ³n de inicio de sesiÃ³n
-        JButton loginButton = new JButton("Iniciar Sesión");
+        JButton loginButton = new JButton("Iniciar Sesiï¿½n");
         loginButton.addActionListener(this);
         
-        JButton registroButton = new JButton("¿Nuevo cliente?");
+        JButton registroButton = new JButton("ï¿½Nuevo cliente?");
         
         registroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ventana.mostraRegistro();
+                
             }
         });
 
@@ -49,7 +49,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 4;
-        gbc.insets = new Insets(10, 10, 10, 10); // Márgenes internos
+        gbc.insets = new Insets(10, 10, 10, 10); // Mï¿½rgenes internos
         
         add(titulo, gbc);
         
