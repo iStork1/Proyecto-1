@@ -49,7 +49,7 @@ public class VentanaPrincipal extends JFrame {
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
 
-        cardLayout.show(contPanel, "registroUsuario");
+        cardLayout.show(contPanel, "login");
         
         setLayout(new BorderLayout());
 
@@ -95,6 +95,10 @@ public class VentanaPrincipal extends JFrame {
 	public void mostrarMenu() 
 	{
 		cardLayout.show(contPanel, "menu");
+	}
+	public void mostraRegistro() 
+	{
+		cardLayout.show(contPanel, "registroUsuario");
 	}
 	public void mostrarPanelVehiculo()
 	{
