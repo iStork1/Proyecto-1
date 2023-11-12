@@ -62,6 +62,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
+		btnFoto = new JButton("Agregar foto");
+		btnFoto.addActionListener(this);
+		btnFoto.setActionCommand("Foto");
+		
 		
 		comboTipo = new JComboBox<String>();
 		comboTipo.addItem("Cliente");
