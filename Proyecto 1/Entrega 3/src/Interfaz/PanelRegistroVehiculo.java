@@ -59,18 +59,18 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.insets = new Insets(10, 10, 10, 10);
 		
 		
-		lblTitulo = new JLabel("Ingrese información para registrar vehículo");
+		lblTitulo = new JLabel("Ingrese informaciï¿½n para registrar vehï¿½culo");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15)); //hay que buscar una especie de directorio de funtes
 		lblId = new JLabel("ID:");
 		lblMarca = new JLabel("Marca:");
 		lblPlaca = new JLabel("Placa:");
-		lblTipo = new JLabel("Tipo de transmisión:");
+		lblTipo = new JLabel("Tipo de transmisiï¿½n:");
 		lblSede = new JLabel("Sede:");
 		lblModelo = new JLabel("Modelo:");
 		lblColor = new JLabel("Color:");
 		lblCategoria = new JLabel("Categoria:");
 		
-		btnRegistrar = new JButton("Rgistrar");
+		btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
@@ -79,7 +79,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		comboCategoria.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener la opción seleccionada
+                // Obtener la opciï¿½n seleccionada
                 String seleccion = comboCategoria.getSelectedItem().toString();
                 if (seleccion.equals("Crear una nueva categoria"))
                 {abrirVentanaDialogo();}
@@ -101,7 +101,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		comboSede.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Obtener la opción seleccionada
+                // Obtener la opciï¿½n seleccionada
                 String seleccion = comboCategoria.getSelectedItem().toString();
                 if (!seleccion.equals(" ")) 
                 {
@@ -163,7 +163,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		gbc.gridx = 0;
 		gbc.gridy++;
 		
-		//lo mismo que con el título
+		//lo mismo que con el tï¿½tulo
 		add(new JLabel(), gbc);
 		gbc.gridx++;
 		add(btnRegistrar, gbc);
@@ -175,7 +175,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	        // Crear una instancia de la VentanaDialogoCategoria
 	        VentanaDialogoCategoria dialogoCategoria = new VentanaDialogoCategoria();
 	        
-	        // Hacer que la ventana de diálogo sea visible
+	        // Hacer que la ventana de diï¿½logo sea visible
 	        dialogoCategoria.setVisible(true);
 	    }
 	 
