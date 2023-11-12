@@ -20,6 +20,7 @@ public class VentanaPrincipal extends JFrame {
 	private JPanel loginPanel;
 	private JPanel seleccionPanel;
 	private JPanel registroVehiculoPanel;
+	private JPanel registroVehiculoUsuario;
 	private JPanel contPanel= new JPanel(); //este es un contenedor
 	private JPanel principalPanel;
 
@@ -32,19 +33,18 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		this.cardLayout =  new CardLayout();
+		this.contPanel.setLayout(cardLayout);
 		
 		//paneles
 		this.loginPanel = new PanelLogin(this);
 		this.seleccionPanel = new PanelSeleccion(this);
 		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
-		
-		this.contPanel.setLayout(cardLayout);
-		this.seleccionPanel = new PanelSeleccion(this);
-		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
+		registroVehiculoUsuario= new PanelRegistroUsuario();
 		this.principalPanel=new PanelPrincipal(this);
-
+		
 		
 		contPanel.add(loginPanel, "login");
+		contPanel.add(registroVehiculoUsuario, "registroUsuario");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
@@ -95,6 +95,10 @@ public class VentanaPrincipal extends JFrame {
 	public void mostrarMenu() 
 	{
 		cardLayout.show(contPanel, "menu");
+	}
+	public void mostraRegistro() 
+	{
+		cardLayout.show(contPanel, "registroUsuario");
 	}
 	public void mostrarPanelVehiculo()
 	{

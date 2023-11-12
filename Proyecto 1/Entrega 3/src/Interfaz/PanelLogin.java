@@ -40,17 +40,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         
         registroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Aquí puedes verificar el nombre de usuario y contraseña
-                String username = usernameField.getText();
-                char[] password = passwordField.getPassword();
-                String passwordString = new String(password);
-
-                // Comprueba si las credenciales son correctas (simulado)
-                if (username.equals("usuario") && passwordString.equals("contraseña")) {
-                    JOptionPane.showMessageDialog(null, "Aun no implementado");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Aun no implementado");
-                }
+                ventana.mostraRegistro();
             }
         });
 
