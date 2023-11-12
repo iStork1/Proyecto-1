@@ -63,7 +63,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		btnRegistrar.setActionCommand("Registrar");
 		
 		
-		// Implementar ComboBox para tipos de usuario
+		comboTipo = new JComboBox<String>();
+		comboTipo.addItem("Cliente");
+		comboTipo.addItem("Empleado");
+		comboTipo.addItem("Administrador");
 		
 		txtNombre = new JTextField(20);
 		txtApellidos = new JTextField(20);
