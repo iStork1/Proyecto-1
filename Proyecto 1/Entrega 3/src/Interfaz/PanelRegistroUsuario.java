@@ -24,7 +24,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 	private JLabel lblTitulo;
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
+	private JLabel lblTelefono;
+	private JLabel lblEmail;
 	private JLabel lblId;
+	private JLabel lblPais;
 	private JLabel lblTipo;
 	private JLabel lblUsuario;
 	private JLabel lblContrasenia;
@@ -32,10 +35,13 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 	
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
+	private JTextField txtTelefono;
+	private JTextField txtEmail;
 	private JTextField txtId;
 	private JTextField txtUsuario;
 	private JTextField txtContrasenia;
 
+	private JComboBox<String> comboPais;
 	private JComboBox<String> comboTipo;
 	
 	private JButton btnFoto;
@@ -61,7 +67,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		
 		lblNombre = new JLabel("Nombre:");
 		lblApellidos = new JLabel("Apellidos:");
+		lblTelefono = new JLabel("Telefono:");
+		lblEmail = new JLabel("Email:");
 		lblId = new JLabel("ID:");
+		
 		lblTipo = new JLabel("Tipo de usuario:");
 		lblUsuario = new JLabel("Nombre de usuario:");
 		lblContrasenia = new JLabel("Contraseña:");
@@ -77,6 +86,8 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		
 		txtNombre = new JTextField(20);
 		txtApellidos = new JTextField(20);
+		txtTelefono = new JTextField(20);
+		txtEmail = new JTextField(40);
 		txtId = new JTextField(20);
 		txtUsuario = new JTextField(20);
 		txtContrasenia = new JTextField(20);
@@ -98,6 +109,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		gbc.gridy++;
 		add(lblApellidos, gbc);
 		gbc.gridy++;
+		add(lblTelefono, gbc);
+		gbc.gridy++;
+		add(lblEmail, gbc);
+		gbc.gridy++;
 		add(lblId, gbc);
 		gbc.gridy++;
 		add(lblTipo, gbc);
@@ -116,6 +131,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		add(txtNombre, gbc);
 		gbc.gridy++;
 		add(txtApellidos, gbc);
+		gbc.gridy++;
+		add(txtTelefono, gbc);
+		gbc.gridy++;
+		add(txtEmail, gbc);
 		gbc.gridy++;
 		add(txtId, gbc);
 		gbc.gridy++;
@@ -198,8 +217,8 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 			String username = txtUsuario.getText();
 			String password = txtContrasenia.getText();
 			String nombre = txtNombre.getText();
-			String telefono = null;//TODO
-			String email = null; //TODO
+			String telefono = txtTelefono.getText();
+			String email = txtEmail.getText();
 			String apellido = txtApellidos.getText();
 			String pais = null; //TODO
 			LocalDateTime fechaNacimiento = null; //TODO
