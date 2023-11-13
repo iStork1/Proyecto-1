@@ -170,13 +170,6 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
             rol = "empleado";
         }
         
-        comboTipo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Llamamos a un m�todo que asigna el valor de rol seg�n la opci�n seleccionada
-                asignarRolDesdeComboBox();
-            }
-        });
 	}
 	
 	public void definirComboBox(String rol)
@@ -204,6 +197,14 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		        for (String nuevaOpcion : opciones) {
 		            modeloActual.addElement(nuevaOpcion);
 		        }
+		        
+		        comboTipo.addActionListener(new ActionListener() {
+		            @Override
+		            public void actionPerformed(ActionEvent e) {
+		                // Llamamos a un m�todo que asigna el valor de rol seg�n la opci�n seleccionada
+		                asignarRolDesdeComboBox();
+		            }
+		        });
 				
 				
 	}

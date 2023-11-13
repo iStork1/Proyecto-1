@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -75,7 +76,8 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
-		comboCategoria = new JComboBox<>(Categorias.getCategorias1());
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(Categorias.getCategorias1());
+		comboCategoria = new JComboBox<>(modelo);
 		
 		comboCategoria.addActionListener(new ActionListener() {
             @Override
@@ -83,11 +85,24 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
                 // Obtener la opci�n seleccionada
                 String seleccion = comboCategoria.getSelectedItem().toString();
                 if (seleccion.equals("Crear una nueva categoria"))
-                {abrirVentanaDialogo();}
+                {
+                	abrirVentanaDialogo();
+                	// Obtener el modelo actual del JComboBox
+        	        DefaultComboBoxModel<String> modeloActual = (DefaultComboBoxModel<String>) comboCategoria.getModel();
+
+        	        // Limpiar el modelo actual
+        	        modeloActual.removeAllElements();
+
+        	        // Agregar las nuevas opciones al modelo
+        	        for (String nuevaOpcion : Categorias.getCategorias1()) {
+        	            modeloActual.addElement(nuevaOpcion);
+        	        }
+                }
                 else if (!(seleccion.equals(" ------------------------- "))) 
                 {
                 	categoria=Categorias.getCategoria(seleccion);
                 }
+                
                 
 //                JOptionPane.showMessageDialog(null, "Seleccionaste: " + seleccion);
             }

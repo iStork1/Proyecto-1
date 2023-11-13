@@ -57,7 +57,7 @@ public class VentanaPrincipal extends JFrame {
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
 
-        cardLayout.show(contPanel, "registroVehiculo");
+        cardLayout.show(contPanel, "login");
         
         setLayout(new BorderLayout());
 
