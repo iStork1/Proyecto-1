@@ -35,7 +35,7 @@ public class PanelReserva extends JPanel implements ActionListener{
 	
 	private JButton btnCrear;
 
-	public PanelReserva() {
+	public PanelReserva(VentanaPrincipal ventana) {
 		// TODO Auto-generated constructor stub
 		
 		this.ventana = ventana;

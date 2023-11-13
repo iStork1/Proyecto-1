@@ -68,7 +68,7 @@ public class SistemaReservaAlquiler {
 	
 	
 	
-	public boolean crearAlquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+	public boolean crearAlquiler(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
 			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario,Usuario usuario) throws IOException 
 	{
 		alquilerEnCurso = new Alquiler(tipoCarro, sedeDondeRecogera,  fechaRecoleccion,
@@ -86,7 +86,7 @@ public class SistemaReservaAlquiler {
 		else {return false;}
 	};
 	
-	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+	public boolean crearReserva(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
 			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega,Inventario inventario) throws IOException 
 	{
 		reservaEnCurso = new Reserva(tipoCarro,sedeDondeRecogera, fechaRecoleccion,	sedeDondeSeEntrega,fechaEntrega,inventario);

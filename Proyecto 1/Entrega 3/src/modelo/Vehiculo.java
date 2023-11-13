@@ -48,8 +48,8 @@ public class Vehiculo {
 		this.disponible = disponible;
 	}
 
-    public boolean estaDisponible(LocalDateTime fecha,Categoria categoria) {
-		if (categoria.equals(this.categoria) && fecha.isAfter(fechaDisponible))  {
+    public boolean estaDisponible(LocalDateTime fecha,Categorias categorias) {
+		if (categorias.equals(this.categoria) && fecha.isAfter(fechaDisponible))  {
 			return true;
 		}
 		else {

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Categoria;
+import modelo.Categorias;
 import modelo.Sede;
 import modelo.Sedes;
 
@@ -74,7 +75,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		btnRegistrar.addActionListener(this);
 		btnRegistrar.setActionCommand("Registrar");
 		
-		comboCategoria = new JComboBox<>(Categoria.getCategorias1());
+		comboCategoria = new JComboBox<>(Categorias.getCategorias1());
 		
 		comboCategoria.addActionListener(new ActionListener() {
             @Override
@@ -85,7 +86,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
                 {abrirVentanaDialogo();}
                 else if (!(seleccion.equals(" ------------------------- "))) 
                 {
-                	categoria=Categoria.getCategoria(seleccion);
+                	categoria=Categorias.getCategoria(seleccion);
                 }
                 
 //                JOptionPane.showMessageDialog(null, "Seleccionaste: " + seleccion);
@@ -179,6 +180,9 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	        
 	        // Hacer que la ventana de di�logo sea visible
 	        dialogoCategoria.setVisible(true);
+//	        comboCategoria.setModel(new ComboBoxModel <String>(Categorias.getCategorias1()));
+	        
+	        
 	    }
 	 
 	 

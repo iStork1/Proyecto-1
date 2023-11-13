@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 import Interfaz.PanelLogin;
 import modelo.Categoria;
+import modelo.Categorias;
 import modelo.ControlUsuarios;
 import modelo.HorarioAtencion;
 import modelo.Sede;
@@ -25,6 +26,7 @@ public class VentanaPrincipal extends JFrame {
 	private PanelSeleccion seleccionPanel;
 	private PanelRegistroVehiculo registroVehiculoPanel;
 	private PanelRegistroUsuario registroUsuarioPanel;
+	private PanelReserva panelReserva;
 	private JPanel contPanel= new JPanel(); //este es un contenedor
 	private PanelPrincipal principalPanel;
 
@@ -40,6 +42,7 @@ public class VentanaPrincipal extends JFrame {
 		this.contPanel.setLayout(cardLayout);
 		
 		//paneles
+		this.panelReserva = new PanelReserva(this);
 		this.loginPanel = new PanelLogin(this);
 		this.seleccionPanel = new PanelSeleccion(this);
 		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
@@ -48,12 +51,13 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		contPanel.add(loginPanel, "login");
+		contPanel.add(panelReserva, "reserva");
 		contPanel.add(registroUsuarioPanel, "registroUsuario");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
 
-        cardLayout.show(contPanel, "login");
+        cardLayout.show(contPanel, "registroVehiculo");
         
         setLayout(new BorderLayout());
 
@@ -73,9 +77,9 @@ public class VentanaPrincipal extends JFrame {
 		return this.renticar.loggin(username, passwordString);
 	}
 	
-	public void registrarVehiculo(String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado) 
+	public void registrarVehiculo(String modelo,Categoria categorias,String color,String placa,String transmision,Sede sedeUbicado) 
 	{
-		this.renticar.agregarVehiculo(modelo,categoria,color,placa,transmision,sedeUbicado);
+		this.renticar.agregarVehiculo(modelo,categorias,color,placa,transmision,sedeUbicado);
 	}
 	
 	public Vehiculo darVehiculo(String placa)
@@ -115,12 +119,12 @@ public class VentanaPrincipal extends JFrame {
 		return this.renticar.getSede(nomSede);
 	}
 	
-	public boolean crearAlquiler(Categoria tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
+	public boolean crearAlquiler(Categorias tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
 	{
 		return this.renticar.alquilarVehiculo(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
 	}
 	
-	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
+	public boolean crearReserva(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
 	{
 		return this.renticar.crearReserva(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
 	}
@@ -142,6 +146,11 @@ public class VentanaPrincipal extends JFrame {
 	public void mostrarPanelVehiculo()
 	{
 		cardLayout.show(contPanel, "registroVehiculo");
+	}
+	
+	public void mostrarPanelReserva()
+	{
+		cardLayout.show(contPanel, "reserva");
 	}
 	
 	public void mostrarPanelPrincipal()

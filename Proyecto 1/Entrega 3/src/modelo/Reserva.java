@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class Reserva implements Serializable {
 
-		private Categoria tipoCarro;
+		private Categorias tipoCarro;
 		private Sede sedeDondeRecogera;
 		
 		private LocalDateTime fechaRecoleccion; 
@@ -18,7 +18,7 @@ public class Reserva implements Serializable {
 //		-otrosConductores:Licencia[]
 		
 		
-		public Reserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+		public Reserva(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
 				Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega,Inventario inventario) {
 			this.tipoCarro = tipoCarro;
 			this.sedeDondeRecogera = sedeDondeRecogera;

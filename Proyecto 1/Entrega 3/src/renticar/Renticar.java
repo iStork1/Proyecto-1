@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import modelo.Categoria;
+import modelo.Categorias;
 import modelo.ControlUsuarios;
 import modelo.HorarioAtencion;
 import modelo.Inventario;
@@ -42,7 +43,8 @@ public class Renticar {
 	
 	
 	public Renticar() throws IOException
-	{	
+	{	File archivoCategorias = new File("categorias.txt");
+		new Categorias(archivoCategorias);
 		File archivoUsuarios = new File("usuarios.txt");
 		File archivoReservaAlquiler = new File("reservAlquiler.txt");
 		File archivoInventario = new File("inventario.txt");
@@ -186,7 +188,7 @@ public class Renticar {
 	}
 	
 	//----------vehiculos
-	public void agregarVehiculo(String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado)
+	public void agregarVehiculo(String modelo,Categoria categorias,String color,String placa,String transmision,Sede sedeUbicado)
 	{
 		//Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible, Usuario clienteTiene
 		
@@ -195,7 +197,7 @@ public class Renticar {
 		LocalDateTime fechaDisponible = LocalDateTime.now();
 		
 				
-		Vehiculo vehiculo =new Vehiculo(categoria, modelo, color, transmision, estado, sedeUbicado, fechaDisponible, true,placa);
+		Vehiculo vehiculo =new Vehiculo(categorias, modelo, color, transmision, estado, sedeUbicado, fechaDisponible, true,placa);
 		
 		this.inventario.agregarVehiculo(vehiculo);
 	}
@@ -209,9 +211,9 @@ public class Renticar {
 		return this.inventario.getVehiculo(placa);
 	}
 	
-	private Vehiculo getVehiculoReserva(LocalDateTime fechaRecogida, Sede sedeRecoge, Categoria categoria)
+	private Vehiculo getVehiculoReserva(LocalDateTime fechaRecogida, Sede sedeRecoge, Categorias categorias)
 	{
-		return this.inventario.conseguirCarro(fechaRecogida, sedeRecoge, categoria);
+		return this.inventario.conseguirCarro(fechaRecogida, sedeRecoge, categorias);
 	}
 	//---------------------
 	
@@ -233,7 +235,7 @@ public class Renticar {
 	//---------------------------------
 	
 	//------------------Sistema de alquiler y reservas----------------
-	public boolean alquilarVehiculo(Categoria tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
+	public boolean alquilarVehiculo(Categorias tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
 	{
 		
 //		Categoria tipoCarro, Sede sedeDondeRecogera, Sede lugarRecoleccion, LocalDate fechaRecoleccion,
@@ -244,7 +246,7 @@ public class Renticar {
 		return this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,sedeDondeSeEntrega, fechaEntrega, this.inventario,this.controlUsuarios.getUsuario());
 		
 	} 
-	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
+	public boolean crearReserva(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
 	{
 		return this.sistemaReservaAlquiler.crearReserva(tipoCarro,sedeDondeRecogera, fechaRecoleccion,sedeDondeSeEntrega,fechaEntrega,inventario);
 	}

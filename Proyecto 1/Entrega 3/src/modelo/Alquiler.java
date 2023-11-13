@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Alquiler implements Serializable{
-	private Categoria tipoCarro;
+	private Categorias tipoCarro;
 	private Sede sedeDondeRecogera;
 	private LocalDateTime fechaRecoleccion; 
 	private Sede sedeDondeSeEntrega;
@@ -17,7 +17,7 @@ public class Alquiler implements Serializable{
 	
 	
 	
-	public Alquiler(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+	public Alquiler(Categorias tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
 			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega, Inventario inventario,Usuario usuario) {
 		this.tipoCarro = tipoCarro;
 		this.sedeDondeRecogera = sedeDondeRecogera;
