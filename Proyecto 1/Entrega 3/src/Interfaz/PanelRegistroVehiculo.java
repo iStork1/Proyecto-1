@@ -33,7 +33,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 	private JLabel lblModelo;
 	private JLabel lblColor;
 	private JLabel lblCategoria;
-	//p
+	
 	private JTextField txtId;
 	private JTextField txtMarca;
 	private JTextField txtPlaca;
