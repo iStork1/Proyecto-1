@@ -53,9 +53,9 @@ public class Renticar {
 		
 		this.administradorGeneral = new Usuario("admin","admin","administradorGeneral");
 		
-		controlUsuarios.crearAdministrador(this.administradorGeneral,"admin");
+		this.controlUsuarios.crearAdministrador(this.administradorGeneral,"admin");
 		
-		//this.sistemaReservaAlquiler = new SistemaReservaAlquiler(archivoReservaAlquiler);//TODO
+		this.sistemaReservaAlquiler = new SistemaReservaAlquiler(archivoReservaAlquiler);//TODO
 		
 		this.inventario = new Inventario(archivoInventario);
 		
@@ -91,39 +91,7 @@ public class Renticar {
 //		return inventario;
 //	}
 	
-//	public void alquilarVehiculo() throws IOException
-//	{
-//		
-////		Categoria tipoCarro, Sede sedeDondeRecogera, Sede lugarRecoleccion, LocalDate fechaRecoleccion,
-////		Sede sedeDondeSeEntrega, LocalDate fechaEntrega, int valorServicio
-//		
-//		if (!this.controlUsuarios.getUsuario().puedeAlquilar())
-//		{this.completarDatos();}
-//		
-//		Categoria tipoCarro = this.seleccionarCategoria();
-//		
-//		Sede sedeDondeRecogera =  this.seleccionarSede();
-//		
-//		
-//		System.out.println("Seleccione la fecha en la que recogera el vehículo");
-//		
-//		LocalDateTime fechaRecoleccion = this.definirFecha();
-//		
-//		Sede sedeDondeSeEntrega = this.seleccionarSede();
-//		
-//		System.out.println("Seleccione la fecha en la que devolverá el vehículo");
-//		
-//		LocalDateTime fechaEntrega = this.definirFecha();
-//		
-//		
 //	
-//		
-//		if (this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,
-//				sedeDondeSeEntrega, fechaEntrega, this.inventario,this.controlUsuarios.getUsuario()))
-//		{System.out.println("El alquiler fue creado");}
-//		
-//		else {System.out.println("El alquiler no fue creado, no se encontró un vehículo que cumpla con sus requerimientos");}
-//	}
 //	
 //	
 //	private Sede seleccionarSede()
@@ -183,28 +151,19 @@ public class Renticar {
 //	
 //	
 	
-//	public void crearUsuarioEmpleado() throws IOException
-//	{
-//		
-//		String rol=null;
-//		
-//		String username = Aplicacion.input("Ingrese el username: ");
-//		String password = Aplicacion.input("Ingrese el password: ");
-//		if (this.controlUsuarios.getRolUsuarioActual().equals("administradorLocal"))
-//		{rol = "empleado";}
-//		else {rol = this.seleccionarRol();}
-//		
-//		this.controlUsuarios.crearUsuario(username, password, rol);
-//		
-//		System.out.println("Usuario creado correctamente.");
-//	}
-//	
+	//-----------usuarios------------
+	public boolean loggin(String usuario,String password) {
+		return this.getcontrolUsuarios().verificarCredencialesUsuario(usuario, password);
+		
+	}
+	
 	public void crearUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento, String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
 	{		
 		this.controlUsuarios.crearUsuario(username, password, rol);
 		this.controlUsuarios.verificarCredencialesUsuario(username, password);
 		this.completarDatos(nombre,telefono,email,apellido,pais,fechaNacimiento,idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento, idDocumento);
 	}	
+	
 	public void completarDatos(String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento,String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento)
 	{
 		Usuario usuario = this.controlUsuarios.getUsuario();
@@ -219,42 +178,14 @@ public class Renticar {
 		
 		
 	}
-//	
+	
 	private Licencia definirLicencia(String numero,String pais,LocalDateTime fechaVencimiento,BufferedImage imagen)
 	{
 		Licencia licencia = new Licencia(numero, pais, fechaVencimiento, imagen);
 		return licencia;
 	}
-//	
-//	
-//	private String seleccionarRol()
-//	{
-//			boolean funcionando=true;
-//			String rol =null;
-//			int opcion=0;
-//			while(funcionando)
-//			{
-//			System.out.println("Seleccione uno de los siguientes usuarios:");
-//			
-//			System.out.println("1. Administrador sede");
-//			System.out.println("2. Empleado");
-//			try {opcion = Integer.parseInt(Aplicacion.input("->"));}
-//			catch(NumberFormatException e) {System.out.println("Ingresa un valor numérico");}
-//			
-//			
-//			if (opcion == 1)
-//				{rol="administradorLocal";
-//				funcionando = false;}
-//			if (opcion ==2)
-//				{rol = "empleado";
-//				funcionando=false;
-//				}
-//			}
-//			
-//			return rol;
-//		
-//	}
-	//modificado para interfaz grafica
+	
+	//----------vehiculos
 	public void agregarVehiculo(String modelo,Categoria categoria,String color,String placa,String transmision,Sede sedeUbicado)
 	{
 		//Categoria categoria,String modelo, String color, String transmision, String estado, Sede sedeUbicado, LocalDateTime fechaDisponible, boolean disponible, Usuario clienteTiene
@@ -277,6 +208,14 @@ public class Renticar {
 	{
 		return this.inventario.getVehiculo(placa);
 	}
+	
+	private Vehiculo getVehiculoReserva(LocalDateTime fechaRecogida, Sede sedeRecoge, Categoria categoria)
+	{
+		return this.inventario.conseguirCarro(fechaRecogida, sedeRecoge, categoria);
+	}
+	//---------------------
+	
+	//--------------sedes------------
 	public void crearSede(String nombre,String direccion,HorarioAtencion horariosAtencion) throws IOException
 	{
 		this.controlSedes.crearSede(nombre, direccion,horariosAtencion);
@@ -286,11 +225,29 @@ public class Renticar {
 	{
 		return this.controlSedes.darSedes();
 	}
-	public Sede darSede(String nomSede)
+	
+	public Sede getSede(String nomSede)
 	{
 		return this.controlSedes.getSede(nomSede);
 	}
+	//---------------------------------
 	
+	//------------------Sistema de alquiler y reservas----------------
+	public boolean alquilarVehiculo(Categoria tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
+	{
+		
+//		Categoria tipoCarro, Sede sedeDondeRecogera, Sede lugarRecoleccion, LocalDate fechaRecoleccion,
+//		Sede sedeDondeSeEntrega, LocalDate fechaEntrega, int valorServicio
+		
+		//if (this.controlUsuarios.getUsuario().puedeAlquilar())
+		//{}
+		return this.sistemaReservaAlquiler.crearAlquiler(tipoCarro, sedeDondeRecogera, fechaRecoleccion,sedeDondeSeEntrega, fechaEntrega, this.inventario,this.controlUsuarios.getUsuario());
+		
+	} 
+	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
+	{
+		return this.sistemaReservaAlquiler.crearReserva(tipoCarro,sedeDondeRecogera, fechaRecoleccion,sedeDondeSeEntrega,fechaEntrega,inventario);
+	}
 	
 //	
 //	
@@ -350,11 +307,6 @@ public class Renticar {
 //		vehiculo.setDisponible(true);
 //	}
 	
-	//Interfaz para el manejo de usuarios
-	public boolean loggin(String usuario,String password) {
-		return this.getcontrolUsuarios().verificarCredencialesUsuario(usuario, password);
-		
-	}
 	
 	 
 
