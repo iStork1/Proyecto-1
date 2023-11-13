@@ -85,11 +85,11 @@ public class Inventario {
 	
 	
 	
-	public Vehiculo conseguirCarro(LocalDateTime fechaRecoleccion ,Sede sede,Categoria categoria ) {
+	public Vehiculo conseguirCarro(LocalDateTime fechaRecoleccion ,Sede sede,Categorias categorias ) {
 		String nombreSede=sede.getNombre();
 		List<Vehiculo> listaDeVehiculosEnSede = vehiculos.get(nombreSede);
 		for (Vehiculo vehiculo: listaDeVehiculosEnSede) {
-			if (vehiculo.estaDisponible(fechaRecoleccion, categoria)) {
+			if (vehiculo.estaDisponible(fechaRecoleccion, categorias)) {
 				return vehiculo;
 			}
 		}

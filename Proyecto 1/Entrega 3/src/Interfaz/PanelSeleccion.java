@@ -87,11 +87,11 @@ public class PanelSeleccion extends JPanel implements ActionListener{
 		}else if(e.getActionCommand().equals("EliminarVerhiculo")){
 			//Cambiar ventana a eliminar vehículos
 		}else if(e.getActionCommand().equals("RegistrarEmpleado")){
-			//Cambiar ventana a registro de empleados
+			this.ventana.mostraRegistro("administraadorLocal");//TODO
 		}else if(e.getActionCommand().equals("CrearReserva")){
-			//Cambiar ventana a creador de reservas
+			this.ventana.mostrarPanelReserva();
 		}else if(e.getActionCommand().equals("ModificarReserva")){
-			//Cambiar ventana a modificador de reservas
+			this.ventana.mostrarPanelReserva();
 		}
 	}
 

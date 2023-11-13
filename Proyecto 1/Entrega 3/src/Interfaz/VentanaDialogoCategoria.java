@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Categoria;
+import modelo.Categorias;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -59,7 +60,7 @@ public class VentanaDialogoCategoria extends JFrame {
                     int valorConductorAdicional = Integer.parseInt(valorConductorAdicionalText);
 
                     // Crear una instancia de la clase Categoria con los valores obtenidos
-                    Categoria categoria = new Categoria(valorEntregaOtraSede, valorConductorAdicional, nombreText);
+                    Categoria categoria = Categorias.crearCategoria(valorEntregaOtraSede, valorConductorAdicional, nombreText);
 
                     // Hacer algo con la instancia de Categoria (por ejemplo, imprimir los valores)
                     //System.out.println(categoria);
