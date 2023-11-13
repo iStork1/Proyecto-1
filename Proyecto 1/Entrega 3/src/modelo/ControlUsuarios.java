@@ -143,12 +143,13 @@ public class ControlUsuarios {
 	
 	public void crearUsuario(String username, String password, String rol) throws IOException {
 		
-		Usuario nuevoUsuario = new Usuario(username,password,rol);
+		if (!this.usuarios.containsKey(username))
+		{Usuario nuevoUsuario = new Usuario(username,password,rol);
 		
 		usuarios.put(username,nuevoUsuario);
 		
 		this.guardarUsuariosRegistrados();
-		
+		}
 	}
 	
 	public void crearAdministrador(Usuario usuario,String username) throws IOException {

@@ -210,12 +210,14 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		try {
 			this.ventana.registrarUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
 			JOptionPane.showMessageDialog(null, "Usuario creado");
+			this.ventana.mostrarMenu();
 		} catch (IOException e1) {
 			JOptionPane.showMessageDialog(null, "Hubo un error");
 			
+			
 		}
 		
-		this.ventana.mostrarMenu();
+		
 		
 	}
 

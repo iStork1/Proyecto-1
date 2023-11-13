@@ -8,11 +8,13 @@ import java.time.LocalDateTime;
 import Interfaz.PanelLogin;
 import modelo.Categoria;
 import modelo.ControlUsuarios;
+import modelo.HorarioAtencion;
 import modelo.Sede;
 import modelo.Vehiculo;
 import renticar.Renticar;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class VentanaPrincipal extends JFrame {
@@ -60,6 +62,8 @@ public class VentanaPrincipal extends JFrame {
         //pack();
         
         
+        
+        
 	}
 	
 	//metodos para conectar con la l�gica
@@ -90,6 +94,17 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	
+	public void crearSede(String nombre,String direccion,HorarioAtencion horariosAtencion)
+	{
+		try {
+			this.renticar.crearSede(nombre,direccion,horariosAtencion);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Credenciales incorrectas");
+			e.printStackTrace();
+		}
+	}
+	
 	public String[] darSedes()
 	{
 		return this.renticar.darSedes();
@@ -100,6 +115,10 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	//metodos para cambiar layouts
+	public void mostrarLogin() 
+	{
+		cardLayout.show(contPanel, "login");
+	}
 	public void mostrarMenu() 
 	{
 		cardLayout.show(contPanel, "menu");
@@ -118,6 +137,7 @@ public class VentanaPrincipal extends JFrame {
 	{
 		cardLayout.show(contPanel, "principal");
 	}
+	
 	
 
 	public static void main(String[] args) throws IOException {

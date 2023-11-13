@@ -83,7 +83,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
                 String seleccion = comboCategoria.getSelectedItem().toString();
                 if (seleccion.equals("Crear una nueva categoria"))
                 {abrirVentanaDialogo();}
-                else if (!seleccion.equals("---")) 
+                else if (!(seleccion.equals(" ------------------------- "))) 
                 {
                 	categoria=Categoria.getCategoria(seleccion);
                 }
@@ -102,7 +102,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Obtener la opci�n seleccionada
-                String seleccion = comboCategoria.getSelectedItem().toString();
+                String seleccion = comboSede.getSelectedItem().toString();
                 if (!seleccion.equals(" ")) 
                 {
                 	sedeUbicado=ventana.darSede(seleccion);
