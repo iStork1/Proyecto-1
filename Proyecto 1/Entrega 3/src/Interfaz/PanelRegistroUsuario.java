@@ -70,7 +70,7 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		lblTelefono = new JLabel("Telefono:");
 		lblEmail = new JLabel("Email:");
 		lblId = new JLabel("ID:");
-		
+		lblPais = new JLabel("Pais:");
 		lblTipo = new JLabel("Tipo de usuario:");
 		lblUsuario = new JLabel("Nombre de usuario:");
 		lblContrasenia = new JLabel("Contraseña:");
@@ -96,6 +96,37 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
         DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(opciones);
 		comboTipo = new JComboBox<String>(modelo);
 		
+		String[] paises = {"Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica",
+				"Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
+				"Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina",
+				"Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso",
+				"Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile",
+				"China", "Christmas Island", "Cocos Islands", "Colombia", "Comoros", "Congo", "Democratic Republic of the Congo",
+				"Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti",
+				"Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+				"Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana",
+				"French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece",
+				"Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti",
+				"Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
+				"Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan",
+				"Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Latvia", "Lebanon",
+				"Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar",
+				"Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte",
+				"Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique",
+				"Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua",
+				"Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestine",
+				"Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar",
+				"Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines",
+				"Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore",
+				"Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain",
+				"Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland",
+				"Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tokelau", "Tonga",
+				"Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine",
+				"United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan",
+				"Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands",
+				"Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"};
+        DefaultComboBoxModel<String> modeloPais = new DefaultComboBoxModel<>(paises);
+		comboPais = new JComboBox<String>(modeloPais);
 		
 		add(new JLabel(), gbc);
 		gbc.gridx++;
@@ -114,6 +145,8 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		add(lblEmail, gbc);
 		gbc.gridy++;
 		add(lblId, gbc);
+		gbc.gridy++;
+		add(lblPais, gbc);
 		gbc.gridy++;
 		add(lblTipo, gbc);
 		gbc.gridy++;
@@ -137,6 +170,8 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		add(txtEmail, gbc);
 		gbc.gridy++;
 		add(txtId, gbc);
+		gbc.gridy++;
+		add(comboPais, gbc);
 		gbc.gridy++;
 		add(comboTipo, gbc);
 		gbc.gridy++;
@@ -221,7 +256,7 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 			String telefono = txtTelefono.getText();
 			String email = txtEmail.getText();
 			String apellido = txtApellidos.getText();
-			String pais = null; //TODO
+			String pais = String.valueOf(comboPais.getSelectedItem());
 			LocalDateTime fechaNacimiento = null; //TODO
 			String idLicencia=null; //TODO
 			LocalDateTime fechaVencimientoLicencia=null;//TODO
