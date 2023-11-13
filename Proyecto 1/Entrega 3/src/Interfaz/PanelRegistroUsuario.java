@@ -72,7 +72,7 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		btnRegistrar.setActionCommand("Registrar");
 		
 		btnFoto = new JButton("Agregar foto");
-		//btnFoto.addActionListener(this); //Esto está mal porque el action esta para el de registrar
+		btnFoto.addActionListener(this);
 		btnFoto.setActionCommand("Foto");
 		
 		txtNombre = new JTextField(20);
@@ -139,10 +139,10 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		
 	}
 	private void asignarRolDesdeComboBox() {
-        // Obtener la opción seleccionada del JComboBox
+        // Obtener la opciï¿½n seleccionada del JComboBox
         String opcionSeleccionada = (String) comboTipo.getSelectedItem();
 
-        // Asignar el valor de rol según la opción seleccionada
+        // Asignar el valor de rol segï¿½n la opciï¿½n seleccionada
         if (opcionSeleccionada.equals("Cliente")) {
             rol = "cliente";
         } else if (opcionSeleccionada.equals("Administrador Local")) {
@@ -154,7 +154,7 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
         comboTipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Llamamos a un método que asigna el valor de rol según la opción seleccionada
+                // Llamamos a un mï¿½todo que asigna el valor de rol segï¿½n la opciï¿½n seleccionada
                 asignarRolDesdeComboBox();
             }
         });
@@ -192,29 +192,34 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		String rol = this.rol; //deben ser "cliente","administradorLocal" o "empleado"
-		System.out.print(rol);
-		String username = txtUsuario.getText();
-		String password = txtContrasenia.getText();
-		String nombre = txtNombre.getText();
-		String telefono = null;//TODO
-		String email = null; //TODO
-		String apellido = txtApellidos.getText();
-		String pais = null; //TODO
-		LocalDateTime fechaNacimiento = null; //TODO
-		String idLicencia=null; //TODO
-		LocalDateTime fechaVencimientoLicencia=null;//TODO
-		BufferedImage imagenLicencia=null; //TODO
-		BufferedImage imagenDocumento = null; //TODO
-		String idDocumento = null; //TODO
-		try {
-			this.ventana.registrarUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
-			JOptionPane.showMessageDialog(null, "Usuario creado");
-			this.ventana.mostrarMenu();
-		} catch (IOException e1) {
-			JOptionPane.showMessageDialog(null, "Hubo un error");
-			
-			
+		if(e.getActionCommand().equals("Registrar")) {
+			String rol = this.rol; //deben ser "cliente","administradorLocal" o "empleado"
+			System.out.print(rol);
+			String username = txtUsuario.getText();
+			String password = txtContrasenia.getText();
+			String nombre = txtNombre.getText();
+			String telefono = null;//TODO
+			String email = null; //TODO
+			String apellido = txtApellidos.getText();
+			String pais = null; //TODO
+			LocalDateTime fechaNacimiento = null; //TODO
+			String idLicencia=null; //TODO
+			LocalDateTime fechaVencimientoLicencia=null;//TODO
+			BufferedImage imagenLicencia=null; //TODO
+			BufferedImage imagenDocumento = null; //TODO
+			String idDocumento = null; //TODO
+			try {
+				this.ventana.registrarUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
+				JOptionPane.showMessageDialog(null, "Usuario creado");
+				this.ventana.mostrarMenu();
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "Hubo un error");
+				
+				
+			}
+		} else if (e.getActionCommand().equals("Foto")) {
+			String foto = JOptionPane.showInputDialog("Ingrese link de la foto");
+			// Para que el usuario ingrese la direcciÃ³n en la que se encuentra la imagen que debe estar en los archivos del programa
 		}
 		
 		
