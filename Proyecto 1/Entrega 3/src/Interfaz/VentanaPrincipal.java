@@ -109,9 +109,20 @@ public class VentanaPrincipal extends JFrame {
 	{
 		return this.renticar.darSedes();
 	}
+	
 	public Sede darSede(String nomSede)
 	{
-		return this.renticar.darSede(nomSede);
+		return this.renticar.getSede(nomSede);
+	}
+	
+	public boolean crearAlquiler(Categoria tipoCarro,Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega,LocalDateTime fechaEntrega) throws IOException
+	{
+		return this.renticar.alquilarVehiculo(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
+	}
+	
+	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega) throws IOException
+	{
+		return this.renticar.crearReserva(tipoCarro, sedeDondeRecogera, fechaRecoleccion, sedeDondeSeEntrega, fechaEntrega);
 	}
 	
 	//metodos para cambiar layouts

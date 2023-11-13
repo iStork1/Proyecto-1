@@ -40,7 +40,7 @@ public class Sedes {
 		
 		arraySedes[0] = " ------------------------- ";
 		for (int i = 0; i < sedes.size(); i++) {
-			arraySedes[i] = sedes.get(i).getNombre();
+			arraySedes[i+1] = sedes.get(i).getNombre();
         }
 		return arraySedes;
 	}

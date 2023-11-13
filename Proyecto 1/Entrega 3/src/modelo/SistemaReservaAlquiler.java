@@ -22,20 +22,12 @@ public class SistemaReservaAlquiler {
 	public SistemaReservaAlquiler(File archivo)
 	{
 		this.archivo=archivo;
-		ArrayList[] listas = this.leerArchivo();
+		this.leerArchivo();
 		
-		this.reservas = listas[0];
-		this.alquileres = listas[1];
-		
-		if (this.reservas == null && this.alquileres ==null) {
-            this.reservas = new ArrayList<>(); // Si no se pudo cargar, crea un nuevo HashMap
-            this.alquileres = new ArrayList<>();
-            
-        }
 	}
 	
 	
-	private ArrayList[] leerArchivo() 
+	private void leerArchivo() 
 	{
 		try {
             FileInputStream fileIn = new FileInputStream(archivo);
@@ -43,10 +35,14 @@ public class SistemaReservaAlquiler {
             ArrayList[] listas = (ArrayList[]) objectIn.readObject();
             objectIn.close();
             fileIn.close();
-            return listas;
+            this.reservas = listas[0];
+    		this.alquileres = listas[1];
+            
 		} catch (IOException | ClassNotFoundException e) {
             // Si ocurre una excepción al cargar, simplemente regresamos null
-            return null;
+			this.reservas = new ArrayList<Reserva>();
+    		this.alquileres = new ArrayList<Alquiler>();
+            
         }
 		
 	}
@@ -90,16 +86,18 @@ public class SistemaReservaAlquiler {
 		else {return false;}
 	};
 	
-	public void crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDate fechaRecoleccion,
-			Sede sedeDondeSeEntrega, LocalDate fechaEntrega) throws IOException 
+	public boolean crearReserva(Categoria tipoCarro, Sede sedeDondeRecogera, LocalDateTime fechaRecoleccion,
+			Sede sedeDondeSeEntrega, LocalDateTime fechaEntrega,Inventario inventario) throws IOException 
 	{
-		reservaEnCurso = new Reserva(tipoCarro,sedeDondeRecogera, fechaRecoleccion,
-				sedeDondeSeEntrega,fechaEntrega);
+		reservaEnCurso = new Reserva(tipoCarro,sedeDondeRecogera, fechaRecoleccion,	sedeDondeSeEntrega,fechaEntrega,inventario);
 		
+		if(reservaEnCurso.hayVehiculo())
+		{
 		reservas.add(reservaEnCurso);
 		reservaEnCurso=null;
-		
 		this.guardarReservasAlquileres();
-		
+		return true;
+		}
+		else {return false;}
 	};
 }

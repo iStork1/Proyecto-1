@@ -61,7 +61,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		
 		lblTitulo = new JLabel("Ingrese informaci�n para registrar veh�culo");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 15)); //hay que buscar una especie de directorio de funtes
-		lblId = new JLabel("ID:");
+		lblId = new JLabel("Disponilidad:");
 		lblMarca = new JLabel("Marca:");
 		lblPlaca = new JLabel("Placa:");
 		lblTipo = new JLabel("Tipo de transmisi�n:");
@@ -94,6 +94,8 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
 		
 		txtColor = new JTextField(20);
 		txtId = new JTextField(20);
+		txtId.setText("disponible");
+		txtId.setEnabled(false);
 		txtMarca = new JTextField(20);
 		txtTipo = new JTextField(20);
 		
@@ -103,7 +105,7 @@ public class PanelRegistroVehiculo extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 // Obtener la opci�n seleccionada
                 String seleccion = comboSede.getSelectedItem().toString();
-                if (!seleccion.equals(" ")) 
+                if (!seleccion.equals(" ------------------------- ")) 
                 {
                 	sedeUbicado=ventana.darSede(seleccion);
                 }
