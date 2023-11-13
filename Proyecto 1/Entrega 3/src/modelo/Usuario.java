@@ -11,6 +11,8 @@ public class Usuario implements Serializable{
 	private String rol;
 	
 	private String nombres;
+	private String apellidos;
+	private String idDocumento;
 	private String telefono;
 	private String email;
 	private LocalDateTime fechaNacimiento;
@@ -54,14 +56,16 @@ public class Usuario implements Serializable{
 		}
 	}
 	
-	public void aniadirDatosCliente(String nom, String tel, String ema, LocalDateTime fecha, String nacio, BufferedImage imagen, Licencia licencia) {
+	public void aniadirDatosCliente(String nom, String tel, String ema, LocalDateTime fecha, String nacio, BufferedImage imagen, Licencia licencia, String apellidos, String idDocumento) {
 		nombres = nom;
+		this.apellidos = apellidos;
 		telefono = tel;
 		email = ema;
 		fechaNacimiento = fecha;
 		nacionalidad = nacio;
 		imagenDocumento = imagen;
 		this.licencia=licencia;
+		this.idDocumento =idDocumento;
 	}
 	
 	

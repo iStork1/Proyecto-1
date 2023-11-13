@@ -6,15 +6,21 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class PanelRegistroUsuario extends JPanel implements ActionListener{
-
+	private VentanaPrincipal ventana;
 	private JLabel lblTitulo;
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
@@ -35,9 +41,12 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 	private JButton btnFoto;
 	private JButton btnRegistrar;
 	
+	private String rol = "";
 	
-	public PanelRegistroUsuario() {
+	
+	public PanelRegistroUsuario(VentanaPrincipal ventana) {
 		// TODO Auto-generated constructor stub
+		this.ventana = ventana;
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -63,20 +72,18 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		btnRegistrar.setActionCommand("Registrar");
 		
 		btnFoto = new JButton("Agregar foto");
-		btnFoto.addActionListener(this);
+		//btnFoto.addActionListener(this); //Esto está mal porque el action esta para el de registrar
 		btnFoto.setActionCommand("Foto");
-		
-		
-		comboTipo = new JComboBox<String>();
-		comboTipo.addItem("Cliente");
-		comboTipo.addItem("Empleado");
-		comboTipo.addItem("Administrador");
 		
 		txtNombre = new JTextField(20);
 		txtApellidos = new JTextField(20);
 		txtId = new JTextField(20);
 		txtUsuario = new JTextField(20);
 		txtContrasenia = new JTextField(20);
+		
+		String[] opciones = {"Cliente", "Empleado", "Administrador Local"};
+        DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>(opciones);
+		comboTipo = new JComboBox<String>(modelo);
 		
 		
 		add(new JLabel(), gbc);
@@ -131,10 +138,84 @@ public class PanelRegistroUsuario extends JPanel implements ActionListener{
 		
 		
 	}
+	private void asignarRolDesdeComboBox() {
+        // Obtener la opción seleccionada del JComboBox
+        String opcionSeleccionada = (String) comboTipo.getSelectedItem();
+
+        // Asignar el valor de rol según la opción seleccionada
+        if (opcionSeleccionada.equals("Cliente")) {
+            rol = "cliente";
+        } else if (opcionSeleccionada.equals("Administrador Local")) {
+            rol = "administradorLocal";
+        } else if (opcionSeleccionada.equals("Empleado")) {
+            rol = "empleado";
+        }
+        
+        comboTipo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Llamamos a un método que asigna el valor de rol según la opción seleccionada
+                asignarRolDesdeComboBox();
+            }
+        });
+	}
+	
+	public void definirComboBox(String rol)
+	{
+		//--------------opciones del Combo box-------
+				String[] opciones = null;
+				if (rol.equals("cliente"))
+					{opciones = new String[]{"Cliente"};}
+				else if (rol.equals("administradorLocal"))
+				{
+					opciones = new String[]{"Empleado Sede"};
+				}
+				else 
+				{
+					opciones = new String[]{"Administrador Local","Empleado Sede"};
+				}
+				
+				// Obtener el modelo actual del JComboBox
+		        DefaultComboBoxModel<String> modeloActual = (DefaultComboBoxModel<String>) comboTipo.getModel();
+
+		        // Limpiar el modelo actual
+		        modeloActual.removeAllElements();
+
+		        // Agregar las nuevas opciones al modelo
+		        for (String nuevaOpcion : opciones) {
+		            modeloActual.addElement(nuevaOpcion);
+		        }
+				
+				
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		String rol = this.rol; //deben ser "cliente","administradorLocal" o "empleado"
+		System.out.print(rol);
+		String username = txtUsuario.getText();
+		String password = txtContrasenia.getText();
+		String nombre = txtNombre.getText();
+		String telefono = null;//TODO
+		String email = null; //TODO
+		String apellido = txtApellidos.getText();
+		String pais = null; //TODO
+		LocalDateTime fechaNacimiento = null; //TODO
+		String idLicencia=null; //TODO
+		LocalDateTime fechaVencimientoLicencia=null;//TODO
+		BufferedImage imagenLicencia=null; //TODO
+		BufferedImage imagenDocumento = null; //TODO
+		String idDocumento = null; //TODO
+		try {
+			this.ventana.registrarUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
+			JOptionPane.showMessageDialog(null, "Usuario creado");
+		} catch (IOException e1) {
+			JOptionPane.showMessageDialog(null, "Hubo un error");
+			
+		}
+		
+		this.ventana.mostrarMenu();
 		
 	}
 

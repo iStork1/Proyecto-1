@@ -1,7 +1,9 @@
 package Interfaz;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import Interfaz.PanelLogin;
 import modelo.Categoria;
@@ -17,12 +19,12 @@ public class VentanaPrincipal extends JFrame {
 	
 	private Renticar renticar;
 	private CardLayout cardLayout;
-	private JPanel loginPanel;
-	private JPanel seleccionPanel;
-	private JPanel registroVehiculoPanel;
-	private JPanel registroVehiculoUsuario;
+	private PanelLogin loginPanel;
+	private PanelSeleccion seleccionPanel;
+	private PanelRegistroVehiculo registroVehiculoPanel;
+	private PanelRegistroUsuario registroUsuarioPanel;
 	private JPanel contPanel= new JPanel(); //este es un contenedor
-	private JPanel principalPanel;
+	private PanelPrincipal principalPanel;
 
 	public VentanaPrincipal() throws IOException {
 		
@@ -39,12 +41,12 @@ public class VentanaPrincipal extends JFrame {
 		this.loginPanel = new PanelLogin(this);
 		this.seleccionPanel = new PanelSeleccion(this);
 		this.registroVehiculoPanel = new PanelRegistroVehiculo(this);
-		registroVehiculoUsuario= new PanelRegistroUsuario();
+		registroUsuarioPanel= new PanelRegistroUsuario(this);
 		this.principalPanel=new PanelPrincipal(this);
 		
 		
 		contPanel.add(loginPanel, "login");
-		contPanel.add(registroVehiculoUsuario, "registroUsuario");
+		contPanel.add(registroUsuarioPanel, "registroUsuario");
 		contPanel.add(seleccionPanel, "menu");
 		contPanel.add(registroVehiculoPanel, "registroVehiculo");
 		contPanel.add(principalPanel, "principal");
@@ -82,6 +84,12 @@ public class VentanaPrincipal extends JFrame {
 		this.renticar.eliminarVehiculo(placa);
 	}
 	
+	public void registrarUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento, String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
+	{
+		this.renticar.crearUsuario(username,password, rol,nombre, telefono,email,apellido,pais,fechaNacimiento, idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento,idDocumento);
+	}
+	
+	
 	public String[] darSedes()
 	{
 		return this.renticar.darSedes();
@@ -96,8 +104,9 @@ public class VentanaPrincipal extends JFrame {
 	{
 		cardLayout.show(contPanel, "menu");
 	}
-	public void mostraRegistro() 
+	public void mostraRegistro(String rol)
 	{
+		this.registroUsuarioPanel.definirComboBox(rol);
 		cardLayout.show(contPanel, "registroUsuario");
 	}
 	public void mostrarPanelVehiculo()

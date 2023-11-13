@@ -40,7 +40,7 @@ public class PanelLogin extends JPanel implements ActionListener{
         
         registroButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ventana.mostraRegistro();
+                ventana.mostraRegistro("cliente");
             }
         });
 

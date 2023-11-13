@@ -1,5 +1,6 @@
 package renticar;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -198,51 +199,32 @@ public class Renticar {
 //		System.out.println("Usuario creado correctamente.");
 //	}
 //	
-//	public void crearUsuarioCliente() throws IOException
-//	{
-//		String username = Aplicacion.input("Ingrese el username: ");
-//		String password = Aplicacion.input("Ingrese el password: ");
-//		String rol = "cliente";
-//		
-//		
-//		this.controlUsuarios.crearUsuario(username, password, rol);
-//		this.controlUsuarios.verificarCredencialesUsuario(username, password);
-//		this.completarDatos();
-//		
-//		System.out.println("Usuario creado correctamente.");
-//	}
+	public void crearUsuario(String username,String password, String rol,String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento, String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento) throws IOException
+	{		
+		this.controlUsuarios.crearUsuario(username, password, rol);
+		this.controlUsuarios.verificarCredencialesUsuario(username, password);
+		this.completarDatos(nombre,telefono,email,apellido,pais,fechaNacimiento,idLicencia,fechaVencimientoLicencia,imagenLicencia,imagenDocumento, idDocumento);
+	}	
+	public void completarDatos(String nombre,String telefono,String email,String apellido,String pais,LocalDateTime fechaNacimiento,String idLicencia,LocalDateTime fechaVencimientoLicencia,BufferedImage imagenLicencia,BufferedImage imagenDocumento,String idDocumento)
+	{
+		Usuario usuario = this.controlUsuarios.getUsuario();
+		
+		//Licencia licencia = //todo
+		
+		
+		Licencia licencia = this.definirLicencia(idLicencia,pais,fechaVencimientoLicencia,imagenLicencia);
+				
+		usuario.aniadirDatosCliente(nombre, telefono, email, fechaNacimiento, pais, imagenDocumento,licencia,apellido,idDocumento);
+		
+		
+		
+	}
 //	
-//	public void completarDatos()
-//	{
-//		Usuario usuario = this.controlUsuarios.getUsuario();
-//		
-//		//Licencia licencia = //todo
-//		String nombre = Aplicacion.input("Ingrese su nombre: ");
-//		String telefono = Aplicacion.input("Ingrese su telefono: ");
-//		String email = Aplicacion.input("Ingrese su nombre: ");
-//		System.out.println("Ingrese su fecha de nacimiento");
-//		LocalDateTime fechaNacimiento = this.definirFecha();
-//		String pais = Aplicacion.input("Ingrese su país de nacimiento: ");
-//		
-//		
-//		Licencia licencia = this.definirLicencia();
-//				
-//		usuario.aniadirDatosCliente(nombre, telefono, email, fechaNacimiento, pais, null,licencia);
-//		System.out.println("Datos agregados correctamente.");
-//		
-//		
-//		
-//	}
-//	
-//	private Licencia definirLicencia()
-//	{
-//		System.out.println("Agrege información de la licencia");
-//		String numero = Aplicacion.input("Ingrese el numero de la licencia: ");
-//		String pais = Aplicacion.input("Ingrese el pais de expedición: ");
-//		LocalDateTime fechaVencimiento = this.definirFecha();
-//		Licencia licencia = new Licencia(numero, pais, fechaVencimiento, null);
-//		return licencia;
-//	}
+	private Licencia definirLicencia(String numero,String pais,LocalDateTime fechaVencimiento,BufferedImage imagen)
+	{
+		Licencia licencia = new Licencia(numero, pais, fechaVencimiento, imagen);
+		return licencia;
+	}
 //	
 //	
 //	private String seleccionarRol()
